@@ -60,7 +60,7 @@ const yearsWord = toWords(years)[0].toUpperCase() + toWords(years).slice(1);
 
     {/* TIMELINE */}
     <div class="mt-10 grid grid-cols-1 md:grid-cols-4">
-      {jobs.map((job) => <Job {...job} />)}
+      {jobs.filter((job) => !job.hideOnIndex).map((job) => <Job {...job} />)}
     </div>
   </Container>
 </Layout>
