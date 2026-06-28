@@ -14,7 +14,6 @@ const posts = await getAllPosts();
     }
 
     const publishDate = new Date(post.date);
-    const url = new URL("https://nicolamustone.com/" + post.slug);
 
     return (
       <article
@@ -35,12 +34,14 @@ const posts = await getAllPosts();
             )}
             <div>
               <h2>
-                {post.title}{" "}
-                {post.categories.map((category) => (
-                  <span class="bg-accent-soft text-accent ml-2 inline-block px-2 py-1 align-middle font-mono text-xs font-light uppercase">
-                    {category}
-                  </span>
-                ))}{" "}
+                <a href={"/" + post.slug} class="text-ink">
+                  {post.title}{" "}
+                  {post.categories.map((category) => (
+                    <span class="bg-accent-soft text-accent ml-2 inline-block px-2 py-1 align-middle font-mono text-xs font-light uppercase">
+                      {category}
+                    </span>
+                  ))}{" "}
+                </a>
               </h2>
               <p class="text-body">{post.excerpt}</p>
             </div>
