@@ -8,19 +8,19 @@ export interface Job {
 export const jobs = [
   {
     years: "2022 - Today",
-    role: "Team Lead",
+    role: "Support Team Lead",
     company: "Automattic Inc.",
     description: "",
   },
   {
     years: "2014 - 2022",
-    role: "Sr Support Agent",
+    role: "WP.com & Woo Support",
     company: "Automattic Inc. & WooThemes",
     description: "",
   },
   {
     years: "2012 - 2014",
-    role: "Jr. Support Agent & WP Dev",
+    role: "Support & WP Dev",
     company: "YITH",
     description: "",
   },
