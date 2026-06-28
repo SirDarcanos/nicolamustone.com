@@ -1,0 +1,11 @@
+---
+interface Props {
+  section?: boolean;
+  className?: string;
+}
+
+const { section, className, ...rest } = Astro.props;
+const Tag = section ? "section" : "div";
+---
+
+<Tag class:list={["mt-20", className]} {...rest}><slot /></Tag>

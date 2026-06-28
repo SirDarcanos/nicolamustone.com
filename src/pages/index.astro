@@ -1,8 +1,20 @@
 ---
+import Container from "../components/Container.astro";
 import Layout from "../layouts/Layout.astro";
 import { getAllPosts } from "../lib/wordpress";
 
 const posts = await getAllPosts();
 ---
 
-<Layout title="Nicola Mustone" type="website" />
+<Layout title="Nicola Mustone" type="website">
+  <Container section className="max-w-xl">
+    <p class="mono text-accent uppercase">X projects & counting</p>
+    <h1>I build small websites,<br />and actually ship them.</h1>
+    <p>
+      I'm Nico — Support Lead at Automattic by day, and a builder of small,
+      sharp, occasionally silly corners of the web the rest of the time. This is
+      where they live.
+    </p>
+  </Container>
+  <Container />
+</Layout>
