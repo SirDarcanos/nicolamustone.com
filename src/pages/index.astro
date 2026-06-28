@@ -8,13 +8,74 @@ const posts = await getAllPosts();
 
 <Layout title="Nicola Mustone" type="website">
   <Container section className="max-w-xl">
-    <p class="mono text-accent uppercase">X projects & counting</p>
-    <h1>I build small websites,<br />and actually ship them.</h1>
-    <p>
+    <p class="mono text-accent font-mono text-sm uppercase">
+      {posts.length} projects & counting
+    </p>
+    <h1 class="mt-4">I build small websites,<br />and actually ship them.</h1>
+    <p class="mt-4 text-lg">
       I'm Nico — Support Lead at Automattic by day, and a builder of small,
       sharp, occasionally silly corners of the web the rest of the time. This is
       where they live.
     </p>
   </Container>
-  <Container />
+  <Container>
+    {
+      posts.map((post) => {
+        let img: URL | null = null;
+        if (post.featuredImage) {
+          img = new URL(post.featuredImage);
+          img.searchParams.set("resize", "48,48");
+          img.searchParams.delete("fit");
+        }
+
+        const publishDate = new Date(post.date);
+        const url = new URL("https://nicolamustone.com/" + post.slug);
+
+        return (
+          <article
+            id={"post-" + post.id}
+            class="border-line border-t px-2 py-7 last:border-b"
+          >
+            <div class="flex-col-2 flex items-center justify-between gap-4">
+              <div class="flex-col-2 flex items-center gap-6">
+                {img && (
+                  <img
+                    src={img.toString()}
+                    alt={post.featuredImageAlt}
+                    decoding="async"
+                    width="48"
+                    height="48"
+                    class="rounded-lg"
+                  />
+                )}
+                <div>
+                  <h2>
+                    {post.title}{" "}
+                    {post.categories.map((category) => (
+                      <span class="bg-accent-soft text-accent ml-2 inline-block px-2 py-1 align-middle font-mono text-xs font-light uppercase">
+                        {category}
+                      </span>
+                    ))}{" "}
+                  </h2>
+                  <p class="text-body">{post.excerpt}</p>
+                </div>
+              </div>
+              <div class="text-muted flex gap-2 font-mono text-xs">
+                {post.tags.map((tag) => (
+                  <span class="capitalize">{tag}</span>
+                ))}{" "}
+                &middot;
+                <time datetime={post.date}>
+                  {publishDate.toLocaleDateString("en-RO", {
+                    year: "numeric",
+                    month: "short",
+                  })}
+                </time>{" "}
+              </div>
+            </div>
+          </article>
+        );
+      })
+    }
+  </Container>
 </Layout>
