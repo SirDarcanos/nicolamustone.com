@@ -81,7 +81,7 @@ const LEGACY_REDIRECTS = [
 
 const INTERNAL_REDIRECTS = [
   ["/comments/feed/", "/"],
-  ["/feed/", "/"]
+  ["/feed/", "/"],
   ["/category/nicos-websites/", "/"],
 ];
 
