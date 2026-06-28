@@ -6,17 +6,15 @@ const posts = await getAllPosts();
 ---
 
 <Layout title="Nicola Mustone" type="website">
-  <main>
-    <h1>Nicola Mustone</h1>
-    <p>Leader. Writer. Builder.</p>
-    <ul>
-      {
-        posts.map((post) => (
-          <li>
-            <a href={`/${post.slug}`}>{post.title}</a>
-          </li>
-        ))
-      }
-    </ul>
-  </main>
+  <h1>Nicola Mustone</h1>
+  <p>Leader. Writer. Builder.</p>
+  <ul>
+    {
+      posts.map((post) => (
+        <li>
+          <a href={`/${post.slug}`}>{post.title}</a>
+        </li>
+      ))
+    }
+  </ul>
 </Layout>

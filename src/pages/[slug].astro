@@ -29,10 +29,8 @@ const { entry } = Astro.props;
   type="article"
   article={entry}
 >
-  <main>
-    <article>
-      <h1>{entry.title}</h1>
-      <article set:html={entry.contentHtml} />
-    </article>
-  </main>
+  <article>
+    <h1>{entry.title}</h1>
+    <article set:html={entry.contentHtml} />
+  </article>
 </Layout>
