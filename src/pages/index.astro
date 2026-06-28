@@ -19,14 +19,18 @@ const yearsWord = toWords(years)[0].toUpperCase() + toWords(years).slice(1);
 
 <Layout title="Nicola Mustone" type="website">
   {/* INTRO */}
-  <Container section id="intro" className="md:max-w-xl">
+  <Container
+    section
+    id="intro"
+    className="text-center md:max-w-xl md:text-left"
+  >
     <Label>
       {posts.length} projects & counting
     </Label>
     <h1 class="mt-4">
       I build small websites,<br />and actually ship them.
     </h1>
-    <p class="text-lg">
+    <p class="mt-5 text-lg">
       I'm Nico — Support Lead at Automattic by day, and a builder of small,
       sharp, occasionally silly corners of the web the rest of the time. This is
       where they live.
