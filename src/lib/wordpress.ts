@@ -114,7 +114,7 @@ function normalize(post: WpPost): Entry {
     .filter((t) => t.taxonomy === "post_tag")
     .map((t) => t.name);
   const cats = terms
-    .filter((t) => t.taxonomy === "category")
+    .filter((t) => t.taxonomy === "category" && t.slug !== "uncategorized")
     .map((t) => t.name);
 
   return {
