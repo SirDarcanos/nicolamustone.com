@@ -11,6 +11,8 @@ export interface Stat {
   description: string;
 }
 
+export const yearsInCareer = new Date().getFullYear() - 2010;
+
 export const jobs = [
   {
     years: "2022 - Today",
@@ -77,7 +79,7 @@ export const jobs = [
 
 export const stats = [
   {
-    count: "15+",
+    count: yearsInCareer + "+",
     description: "years in support & web development",
   },
   {
@@ -97,3 +99,49 @@ export const stats = [
     description: "articles & essays written",
   },
 ];
+
+export const skills = {
+  tech: [
+    "WordPress",
+    "WooCommerce",
+    "PHP",
+    "JavaScript",
+    "Zendesk",
+    "Looker",
+    "Resin 3D printing",
+    "AI-assisted development",
+    "SEO",
+  ],
+  human: [
+    "Customer support",
+    "Technical troubleshooting",
+    "Escalation management",
+    "Team leadership",
+    "Coaching & mentoring",
+    "Performance management",
+    "Hiring & onboarding",
+    "Process & workflow design",
+    "Project management",
+    "Professional writing",
+    "Documentation",
+    "Teaching & workshops",
+    "Community building",
+    "Event planning",
+    "Marketing",
+    "Online advertising",
+    "Store management",
+    "Operations management",
+    "Budgeting & finance",
+    "Shipping management",
+  ],
+  exploring: [
+    "Python",
+    "Computer Vision",
+    "NLP",
+    "React",
+    "TypeScript",
+    "Next.js",
+    "Astro",
+    "TailwindCSS",
+  ],
+};
