@@ -6,7 +6,9 @@ import Nav from "../components/Nav.astro";
   <div
     class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 md:flex-row"
   >
-    <p>&copy; 2026 Nicola Mustone &middot; MIT</p>
+    <p>
+      &copy; {new Date().getFullYear().toString()} Nicola Mustone &middot; MIT
+    </p>
     <Nav location="footer" />
   </div>
 </footer>
