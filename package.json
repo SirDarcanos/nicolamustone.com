@@ -18,9 +18,11 @@
     "@astrojs/sitemap": "^3.7.3",
     "@tailwindcss/vite": "^4.3.1",
     "astro": "^7.0.3",
+    "number-to-words": "^1.2.4",
     "tailwindcss": "^4.3.1"
   },
   "devDependencies": {
+    "@types/number-to-words": "^1.2.3",
     "prettier": "^3.8.4",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.8.0",
