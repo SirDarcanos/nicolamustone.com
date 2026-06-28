@@ -1,21 +1,32 @@
 ---
+import Button from "../components/Button.astro";
 import Container from "../components/Container.astro";
+import Label from "../components/Label.astro";
 import Layout from "../layouts/Layout.astro";
+import Job from "../components/Job.astro";
 import ProjectsList from "../components/ProjectsList.astro";
+import pkg from "number-to-words";
 
 import { getAllPosts } from "../lib/wordpress";
+import { jobs } from "../data/jobs";
 
 const posts = await getAllPosts();
+
+const { toWords } = pkg;
+const years = new Date().getFullYear() - 2011;
+const yearsWord = toWords(years)[0].toUpperCase() + toWords(years).slice(1);
 ---
 
 <Layout title="Nicola Mustone" type="website">
   {/* INTRO */}
-  <Container section id="intro" className="max-w-xl">
-    <p class="mono text-accent font-mono text-sm uppercase">
+  <Container section id="intro" className="md:max-w-xl">
+    <Label>
       {posts.length} projects & counting
-    </p>
-    <h1 class="mt-4">I build small websites,<br />and actually ship them.</h1>
-    <p class="mt-4 text-lg">
+    </Label>
+    <h1 class="mt-4">
+      I build small websites,<br />and actually ship them.
+    </h1>
+    <p class="text-lg">
       I'm Nico — Support Lead at Automattic by day, and a builder of small,
       sharp, occasionally silly corners of the web the rest of the time. This is
       where they live.
@@ -25,5 +36,27 @@ const posts = await getAllPosts();
   {/* PROJECTS */}
   <Container id="projects">
     <ProjectsList />
+  </Container>
+
+  {/* EXPERIENCE */}
+  <Container
+    section
+    id="experience"
+    className="border-line bg-surface rounded-xl border p-10"
+  >
+    <Label>My experience</Label>
+    <div
+      class="mt-2 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center"
+    >
+      <h2>
+        {yearsWord} years of code, tickets & leadership.
+      </h2>
+      <Button href="/about" ghost>Read the full story</Button>
+    </div>
+
+    {/* TIMELINE */}
+    <div class="mt-10 grid grid-cols-4 gap-0">
+      {jobs.map((job) => <Job {...job} />)}
+    </div>
   </Container>
 </Layout>

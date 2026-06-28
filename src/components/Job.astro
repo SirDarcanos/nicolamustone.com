@@ -1,0 +1,14 @@
+---
+import type { Job } from "../data/jobs";
+
+type Props = Job;
+const { years, role, company } = Astro.props;
+---
+
+<div class="border-accent-soft relative border-t-2 pt-4">
+  <span class="bg-accent absolute -top-[5.5px] left-0 size-2.5 rounded-full"
+  ></span>
+  <span class="text-faint text-xs">{years}</span>
+  <h3 class="mt-2 text-base font-semibold">{role}</h3>
+  <span class="text-muted text-xs">{company}</span>
+</div>
