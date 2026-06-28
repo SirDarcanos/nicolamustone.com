@@ -1,0 +1,18 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props {
+  href: string;
+  className?: string;
+  ghost?: boolean;
+}
+
+const { href, className, ghost, ...rest } = Astro.props;
+const style = ghost
+  ? "border border-accent rounded-3xl hover:bg-accent hover:text-surface"
+  : "bg-accent text-surface hover:bg-accent-dark";
+---
+
+<a href={href} class:list={["px-5 py-2 text-sm", style, className]} {...rest}
+  ><slot /></a
+>
