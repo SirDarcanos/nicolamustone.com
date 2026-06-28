@@ -1,0 +1,27 @@
+{
+  "name": "nicolamustone-com",
+  "type": "module",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.1",
+    "astro": "^7.0.3",
+    "tailwindcss": "^4.3.1"
+  },
+  "devDependencies": {
+    "prettier": "^3.8.4",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.8.0",
+    "typescript": "^6.0.3"
+  }
+}
