@@ -1,0 +1,23 @@
+---
+import type { Job } from "../data/data";
+
+type Props = Job;
+const { years, role, company, highlights = [] } = Astro.props;
+---
+
+<div class="border-accent-soft relative border-l-2 pt-1 pb-8 pl-6">
+  <span class="bg-accent absolute top-3 left-[-5.5px] size-2.5 rounded-full"
+  ></span>
+  <span class="text-faint text-xs">{years}</span>
+  <h3 class="mt-2 text-base font-semibold">
+    {role}
+    <span class="text-faint font-thin"> &middot; {company}</span>
+  </h3>
+  <ul class="text-muted mt-3 list-disc pl-4">
+    {
+      highlights.map((highlight) => {
+        return <li>{highlight}</li>;
+      })
+    }
+  </ul>
+</div>
