@@ -1,1 +1,11 @@
-<p class="mono text-accent font-mono text-sm uppercase"><slot /></p>
+---
+interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
+---
+
+<p class:list={["mono text-accent font-mono text-sm uppercase", className]}>
+  <slot />
+</p>
