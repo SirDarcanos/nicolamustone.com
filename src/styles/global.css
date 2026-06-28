@@ -43,19 +43,19 @@
   }
 
   h1 {
-    @apply text-5xl;
+    @apply text-3xl md:text-5xl;
   }
 
   h2 {
-    @apply text-3xl;
+    @apply text-2xl md:text-3xl;
   }
 
   h3 {
-    @apply text-2xl;
+    @apply text-xl md:text-2xl;
   }
 
   a {
-    @apply text-accent underline decoration-dotted underline-offset-4;
+    @apply text-accent;
   }
 
   a:hover {
@@ -64,5 +64,9 @@
 
   main p {
     @apply text-body;
+  }
+
+  main p a {
+    @apply underline decoration-dotted underline-offset-4;
   }
 }
