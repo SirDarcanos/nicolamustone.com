@@ -1,17 +1,27 @@
 ---
+/**
+ * Home page (hub). Minimal version — full hub layout is Phase 2.6.
+ * Lists the project posts so the homepage is real and the SEO/sitemap wiring
+ * can be verified end to end.
+ */
+import Layout from "../layouts/Layout.astro";
+import { getAllPosts } from "../lib/wordpress";
 
+const posts = await getAllPosts();
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Nicola Mustone" type="website">
+  <main>
+    <h1>Nicola Mustone</h1>
+    <p>Leader. Writer. Builder.</p>
+    <ul>
+      {
+        posts.map((post) => (
+          <li>
+            <a href={`/${post.slug}`}>{post.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</Layout>

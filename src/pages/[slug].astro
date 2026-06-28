@@ -1,0 +1,38 @@
+---
+/**
+ * [slug].astro — single post at the flat /<slug> path.
+ *
+ * getStaticPaths() maps every published post to its flat slug (no date prefix);
+ * the old date-based URLs 301 here via public/_redirects (Phase 3.4).
+ */
+import Layout from "../layouts/Layout.astro";
+import { getAllPosts, type Entry } from "../lib/wordpress";
+
+export async function getStaticPaths() {
+  const posts = await getAllPosts();
+  return posts.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: Entry;
+}
+
+const { entry } = Astro.props;
+---
+
+<Layout
+  title={entry.seo.title}
+  description={entry.seo.description}
+  type="article"
+  article={entry}
+>
+  <main>
+    <article>
+      <h1>{entry.title}</h1>
+      <article set:html={entry.contentHtml} />
+    </article>
+  </main>
+</Layout>

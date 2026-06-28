@@ -1,0 +1,44 @@
+---
+/**
+ * Base.astro — shared document shell.
+ *
+ * Wires the SEO component into <head> for every page. Page-specific SEO is
+ * passed through via props.
+ */
+import SEO from "../components/SEO.astro";
+import type { Entry } from "../lib/wordpress";
+
+interface Props {
+  title: string;
+  description?: string;
+  type?: "website" | "article";
+  article?: Entry;
+}
+
+const { title, description, type, article } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <SEO
+      title={title}
+      description={description}
+      type={type}
+      article={article}
+    />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Nicola Mustone » Feed"
+      href="/feed/"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
