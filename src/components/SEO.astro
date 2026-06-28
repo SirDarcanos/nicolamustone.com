@@ -26,8 +26,7 @@ const {
   article,
 } = Astro.props;
 
-const fullTitle =
-  title === SITE_NAME ? SITE_NAME : `${title} — ${SITE_NAME}`;
+const fullTitle = title === SITE_NAME ? SITE_NAME : `${title} — ${SITE_NAME}`;
 const resolvedCanonical = article?.seo.canonical ?? canonical;
 const resolvedOgImage = article?.seo.ogImage ?? ogImage;
 
@@ -105,9 +104,6 @@ if (article) {
 {/* JSON-LD */}
 {
   jsonLd.map((schema) => (
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify(schema)}
-    />
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   ))
 }

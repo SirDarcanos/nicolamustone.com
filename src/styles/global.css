@@ -25,11 +25,11 @@
 
 @layer base {
   html {
-    @apply antialiased leading-relaxed;
+    @apply leading-relaxed antialiased;
   }
 
   body {
-    @apply bg-background text-ink text-base font-base;
+    @apply bg-background text-ink font-base text-base;
   }
 
   ::selection {
@@ -39,7 +39,7 @@
   h1,
   h2,
   h3 {
-    @apply font-display font-semibold leading-tight tracking-tight text-headline;
+    @apply font-display text-headline leading-tight font-semibold tracking-tight;
   }
 
   h1 {

@@ -1,0 +1,32 @@
+---
+interface Props {
+  location?: string;
+}
+
+const { location } = Astro.props;
+
+const path = Astro.url.pathname;
+
+const links = [
+  { href: "/", label: "Work" },
+  { href: "/about", label: "About" },
+];
+---
+
+<nav class="flex gap-6 font-mono md:items-end">
+  {
+    links.map((link) => (
+      <a
+        href={link.href}
+        aria-current={path === link.href ? "page" : undefined}
+        class={
+          location && location === "footer"
+            ? "text-faint no-underline"
+            : "no-underline"
+        }
+      >
+        {link.label}
+      </a>
+    ))
+  }
+</nav>

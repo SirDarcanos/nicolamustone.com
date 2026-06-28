@@ -1,6 +1,8 @@
 ---
 import "../styles/global.css";
 import SEO from "../components/SEO.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 import type { Entry } from "../lib/wordpress";
 
 interface Props {
@@ -35,9 +37,11 @@ const { title, description, type, article } = Astro.props;
       article={article}
     />
   </head>
-  <body>
-    <main id="main">
+  <body class="flex min-h-dvh flex-col">
+    <Header />
+    <main id="main" class="mx-auto max-w-5xl flex-1">
       <slot />
     </main>
+    <Footer />
   </body>
 </html>
