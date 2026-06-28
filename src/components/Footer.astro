@@ -9,6 +9,47 @@ import Nav from "../components/Nav.astro";
     <p>
       &copy; {new Date().getFullYear().toString()} Nicola Mustone &middot; MIT
     </p>
+    <Nav
+      location="footer"
+      links={[
+        {
+          href: "https://github.com/SirDarcanos",
+          label: "GitHub",
+          blank: true,
+          nofollow: true,
+        },
+        {
+          href: "https://www.linkedin.com/in/nicolamustone/",
+          label: "LinkedIn",
+          blank: true,
+          nofollow: true,
+        },
+        {
+          href: "https://bsky.app/profile/nicolamustone.bsky.social",
+          label: "Bluesky",
+          blank: true,
+          nofollow: true,
+        },
+        {
+          href: "https://indieweb.social/@nicolamustone",
+          label: "Mastodon",
+          blank: true,
+          nofollow: true,
+        },
+        {
+          href: "https://x.com/nicolamustone",
+          label: "X",
+          blank: true,
+          nofollow: true,
+        },
+        {
+          href: "https://profiles.wordpress.org/nicolamustone/",
+          label: "WordPress",
+          blank: true,
+          nofollow: true,
+        },
+      ]}
+    />
     <Nav location="footer" />
   </div>
 </footer>

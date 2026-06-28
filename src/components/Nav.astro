@@ -1,16 +1,26 @@
 ---
+interface NavLink {
+  href: string;
+  label: string;
+  rel?: string;
+  nofollow?: boolean;
+  blank?: boolean;
+}
+
 interface Props {
+  links?: NavLink[];
   location?: string;
 }
 
-const { location } = Astro.props;
+const {
+  links = [
+    { href: "/", label: "Work" },
+    { href: "/about", label: "About" },
+  ],
+  location,
+} = Astro.props;
 
 const path = Astro.url.pathname;
-
-const links = [
-  { href: "/", label: "Work" },
-  { href: "/about", label: "About" },
-];
 ---
 
 <nav class="flex gap-6 font-mono md:items-end">
@@ -20,6 +30,12 @@ const links = [
         href={link.href}
         aria-current={path === link.href ? "page" : undefined}
         class={location && location === "footer" ? "text-faint" : undefined}
+        target={link.blank ? "_blank" : undefined}
+        rel={
+          link.blank && link.nofollow
+            ? "nofollow noopener noreferrer"
+            : undefined
+        }
       >
         {link.label}
       </a>
