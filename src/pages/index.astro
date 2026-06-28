@@ -8,13 +8,13 @@ import ProjectsList from "../components/ProjectsList.astro";
 import pkg from "number-to-words";
 
 import { getAllPosts } from "../lib/wordpress";
-import { jobs } from "../data/data";
+import { jobs, yearsInCareer } from "../data/data";
 
 const posts = await getAllPosts();
 
 const { toWords } = pkg;
-const years = new Date().getFullYear() - 2011;
-const yearsWord = toWords(years)[0].toUpperCase() + toWords(years).slice(1);
+const yearsWord =
+  toWords(yearsInCareer)[0].toUpperCase() + toWords(yearsInCareer).slice(1);
 ---
 
 <Layout title="Nicola Mustone" type="website">
