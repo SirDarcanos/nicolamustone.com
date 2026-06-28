@@ -5,8 +5,11 @@ type Props = Job;
 const { years, role, company } = Astro.props;
 ---
 
-<div class="border-accent-soft relative border-t-2 pt-4">
-  <span class="bg-accent absolute top-[-5.5px] left-0 size-2.5 rounded-full"
+<div
+  class="border-accent-soft relative border-l-2 pt-1 pb-8 pl-6 md:border-t-2 md:border-l-0 md:pt-4 md:pr-6 md:pb-0 md:pl-0"
+>
+  <span
+    class="bg-accent absolute top-1 left-[-5.5px] size-2.5 rounded-full md:top-[-5.5px] md:left-0"
   ></span>
   <span class="text-faint text-xs">{years}</span>
   <h3 class="mt-2 text-base font-semibold">{role}</h3>

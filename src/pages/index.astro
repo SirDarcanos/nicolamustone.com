@@ -42,7 +42,7 @@ const yearsWord = toWords(years)[0].toUpperCase() + toWords(years).slice(1);
   <Container
     section
     id="experience"
-    className="border-line bg-surface rounded-xl border p-10"
+    className="border-line bg-surface rounded-xl border p-6 md:p-10"
   >
     <Label>My experience</Label>
     <div
@@ -55,7 +55,7 @@ const yearsWord = toWords(years)[0].toUpperCase() + toWords(years).slice(1);
     </div>
 
     {/* TIMELINE */}
-    <div class="mt-10 grid grid-cols-4 gap-0">
+    <div class="mt-10 grid grid-cols-1 md:grid-cols-4">
       {jobs.map((job) => <Job {...job} />)}
     </div>
   </Container>
