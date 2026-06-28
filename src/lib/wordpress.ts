@@ -21,18 +21,28 @@ export type Entry = {
   id: number;
   slug: string;
   type: "post";
-  title: string; // decoded plain text
-  contentHtml: string; // content.rendered
-  excerpt: string; // decoded plain text, tags stripped
+  title: string;
+  contentHtml: string;
+  excerpt: string;
   date: string; // ISO
   modified: string; // ISO
   featuredImage?: string;
+  featuredImageAlt?: string;
+  tags: string[];
+  categories: string[];
   seo: {
     title: string;
     description: string;
     ogImage?: string;
     canonical: string;
   };
+};
+
+type WpTerm = {
+  id: number;
+  name: string;
+  slug: string;
+  taxonomy: string;
 };
 
 /** Raw shape of the WordPress.com REST post objects we consume. */
@@ -45,6 +55,13 @@ type WpPost = {
   excerpt: { rendered: string };
   content: { rendered: string };
   jetpack_featured_media_url?: string;
+  _embedded?: {
+    "wp:featuredmedia"?: Array<{
+      alt_text?: string;
+      media_details?: { width?: number; height?: number };
+    }>;
+    "wp:term"?: WpTerm[][];
+  };
 };
 
 const HTML_ENTITIES: Record<string, string> = {
@@ -89,6 +106,17 @@ function truncate(text: string, max = 160): string {
 }
 
 function normalize(post: WpPost): Entry {
+  const media = post._embedded?.["wp:featuredmedia"]?.[0];
+  const featuredImageAlt = media?.alt_text || undefined;
+
+  const terms = (post._embedded?.["wp:term"] ?? []).flat();
+  const tags = terms
+    .filter((t) => t.taxonomy === "post_tag")
+    .map((t) => t.name);
+  const cats = terms
+    .filter((t) => t.taxonomy === "category")
+    .map((t) => t.name);
+
   return {
     id: post.id,
     slug: post.slug,
@@ -99,6 +127,9 @@ function normalize(post: WpPost): Entry {
     date: post.date,
     modified: post.modified,
     featuredImage: post.jetpack_featured_media_url || undefined,
+    featuredImageAlt: featuredImageAlt,
+    tags: tags,
+    categories: cats,
     seo: {
       title: decodeEntities(post.title.rendered),
       description: truncate(toPlainText(post.excerpt.rendered)),
@@ -120,7 +151,7 @@ export async function getAllPosts(): Promise<Entry[]> {
   const all: Entry[] = [];
 
   while (true) {
-    const url = `${API_BASE}/posts?per_page=${perPage}&page=${page}&_fields=id,slug,date,modified,title,excerpt,content,jetpack_featured_media_url`;
+    const url = `${API_BASE}/posts?per_page=${perPage}&page=${page}&_fields=id,slug,date,modified,title,excerpt,content,featured_media,jetpack_featured_media_url,_links,_embedded&_embed=wp:featuredmedia,wp:term`;
     const res = await fetch(url);
 
     if (res.status === 400) break; // WP returns 400 past the last page
