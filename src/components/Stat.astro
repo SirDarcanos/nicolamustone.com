@@ -1,0 +1,11 @@
+---
+import type { Stat } from "../data/data";
+
+type Props = Stat;
+const { count, description } = Astro.props;
+---
+
+<div class="border-line bg-surface rounded-xl border p-7">
+  <p class="text-accent font-display mb-3 text-3xl font-bold">{count}</p>
+  <p class="text-muted text-xs">{description}</p>
+</div>

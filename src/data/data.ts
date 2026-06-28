@@ -5,6 +5,11 @@ export interface Job {
   description?: string;
 }
 
+export interface Stat {
+  count: string;
+  description: string;
+}
+
 export const jobs = [
   {
     years: "2022 - Today",
@@ -29,5 +34,28 @@ export const jobs = [
     role: "Web Dev",
     company: "Freelance",
     description: "",
+  },
+];
+
+export const stats = [
+  {
+    count: "15+",
+    description: "years in support & web development",
+  },
+  {
+    count: "54k+",
+    description: "tickets & chats answered",
+  },
+  {
+    count: "10+",
+    description: "teams & projects managed",
+  },
+  {
+    count: "25+",
+    description: "team members coached",
+  },
+  {
+    count: "150+",
+    description: "articles & essays written",
   },
 ];
