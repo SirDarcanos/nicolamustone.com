@@ -75,7 +75,9 @@ function decodeEntities(input: string): string {
 
 /** Strip HTML tags + decode entities + collapse whitespace → plain text. */
 function toPlainText(html: string): string {
-  return decodeEntities(html.replace(/<[^>]+>/g, "")).replace(/\s+/g, " ").trim();
+  return decodeEntities(html.replace(/<[^>]+>/g, ""))
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 /** Clamp to ~160 chars at a word boundary for use as a meta description. */

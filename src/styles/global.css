@@ -1,12 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  /* Typeface roles */
-  --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif; /* body / UI */
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif; /* headings */
-  --font-mono: "JetBrains Mono", ui-monospace, monospace; /* labels */
+  --font-base: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
-  /* Core neutrals — cool-toned */
   --color-background: #f6f6fa; /* page background */
   --color-surface: #fcfcff; /* cards & panels */
   --color-ink: #201f29; /* primary text, nav, dark surfaces */
@@ -17,12 +15,10 @@
   --color-faint: #918fa3; /* mono metadata */
   --color-line: rgba(30, 28, 45, 0.1); /* borders & dividers */
 
-  /* Accent — indigo */
   --color-accent: #5a52d5; /* links, active state, emphasis */
   --color-accent-dark: #4a43bd; /* hover / pressed */
   --color-accent-soft: rgba(90, 82, 213, 0.13); /* tag & chip fills */
 
-  /* On dark surfaces (ink) */
   --color-on-dark: #f6f6fa;
   --color-on-dark-muted: #adaac0;
 }
@@ -33,14 +29,16 @@
   }
 
   body {
-    @apply bg-background text-ink text-base font-sans;
+    @apply bg-background text-ink text-base font-base;
   }
 
   ::selection {
     @apply bg-accent-dark text-on-dark;
   }
 
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     @apply font-display font-semibold leading-tight tracking-tight text-headline;
   }
 

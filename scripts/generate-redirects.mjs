@@ -64,7 +64,10 @@ const LEGACY_REDIRECTS = [
   ],
 
   // Specific tutorials migrated to buthonestly.io
-  ["/category/wordpress/woocommerce/", "https://buthonestly.io/topic/wordpress/"],
+  [
+    "/category/wordpress/woocommerce/",
+    "https://buthonestly.io/topic/wordpress/",
+  ],
   [
     "/2016/01/27/remove-the-password-strength-meter-on-the-checkout-page/",
     "https://buthonestly.io/programming/woocommerce-password-strength-meter-checkout/",
