@@ -42,13 +42,13 @@ const publishDate = new Date(post.date);
   article={post}
 >
   {/* POST HEADER */}
-  <article id={"post-" + post.id} class="mt-10">
+  <article id={"post-" + post.id} class="mt-20">
     <header class="text-center md:max-w-xl md:text-left">
-      <p class="font-mono text-xs">
+      <p class="font-mono text-sm uppercase">
         {
           post.tags.map((tag) => (
             <>
-              <span class="text-accent capitalize">{tag}</span>
+              <span class="text-accent">{tag}</span>
               <span class="text-faint"> / </span>
             </>
           ))
