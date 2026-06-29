@@ -201,7 +201,7 @@ function normalize(post: WpPost, stackTree: StackTree): Entry {
       description: truncate(toPlainText(post.excerpt.rendered)),
       ogImage: post.jetpack_featured_media_url || undefined,
       // Always the root domain, never the admin subdomain (plan 0.3).
-      canonical: `${SITE_URL}/${post.slug}`,
+      canonical: `${SITE_URL}/${post.slug}/`,
     },
   };
 }

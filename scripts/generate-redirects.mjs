@@ -95,7 +95,7 @@ async function getDateToSlugRedirects() {
   const posts = await res.json();
   return posts.map((p) => {
     const fromPath = new URL(p.link).pathname; // /YYYY/MM/DD/slug/
-    return [fromPath, `/${p.slug}`];
+    return [fromPath, `/${p.slug}/`];
   });
 }
 

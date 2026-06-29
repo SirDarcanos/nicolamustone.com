@@ -34,7 +34,7 @@ const posts = await getAllPosts();
           <div class="min-w-0 flex-1 md:flex md:items-center md:justify-between md:gap-4">
             <div>
               <h2>
-                <a href={"/" + post.slug} class="text-ink">
+                <a href={`/${post.slug}/`} class="text-ink">
                   {post.title}
                   {post.categories.map((category) => (
                     <span class="bg-accent-soft text-accent ml-2 inline-block px-2 py-1 align-middle font-mono text-xs font-light uppercase">
