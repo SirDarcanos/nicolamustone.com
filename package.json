@@ -13,7 +13,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "plugin:zip": "cd wordpress && rm -f nmcom-project-fields.zip && zip -rqX nmcom-project-fields.zip nmcom-project-fields -x '*.DS_Store'"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

@@ -37,6 +37,7 @@ npm run dev      # start the dev server at http://localhost:4321
 | `npm run preview`      | Preview the production build locally                                 |
 | `npm run format`       | Format the codebase with Prettier                                    |
 | `npm run format:check` | Check formatting without writing                                     |
+| `npm run plugin:zip`   | Package the WordPress plugin (`wordpress/nmcom-project-fields/`) into an installable zip |
 
 ## Project structure
 
@@ -79,4 +80,4 @@ Built as a static site (`npm run build` → `dist/`) for Cloudflare Pages. The s
 
 The front-end is released under the [MIT License](LICENSE).
 
-The WordPress plugin under [`wordpress/`](wordpress/) is licensed **GPLv2-or-later** (as required for WordPress plugins) — see [`wordpress/LICENSE`](wordpress/LICENSE).
+The WordPress plugin under [`wordpress/`](wordpress/) is licensed **GPLv2-or-later** (as required for WordPress plugins) — see [`wordpress/nmcom-project-fields/LICENSE`](wordpress/nmcom-project-fields/LICENSE).
