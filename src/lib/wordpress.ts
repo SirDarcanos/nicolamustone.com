@@ -17,6 +17,8 @@ const SITE_URL = "https://nicolamustone.com";
 const API_BASE =
   "https://public-api.wordpress.com/wp/v2/sites/nicolamustone.com";
 
+export type PostLink = Pick<Entry, "title" | "slug">;
+
 export type Entry = {
   id: number;
   slug: string;

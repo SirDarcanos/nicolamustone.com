@@ -3,7 +3,9 @@ import Container from "../components/Container.astro";
 import Highlight from "../components/Highlight.astro";
 import Label from "../components/Label.astro";
 import Layout from "../layouts/Layout.astro";
-import { getAllPosts, type Entry } from "../lib/wordpress";
+import PostsNav from "../components/PostsNav.astro";
+import Stack from "../components/Stack.astro";
+import { getAllPosts, type PostLink, type Entry } from "../lib/wordpress";
 
 export async function getStaticPaths() {
   const posts = await getAllPosts();
@@ -22,8 +24,6 @@ export async function getStaticPaths() {
     },
   }));
 }
-
-type PostLink = { title: string; slug: string };
 
 interface Props {
   post: Entry;
@@ -91,18 +91,7 @@ const publishDate = new Date(post.date);
           </h2>
           <dl class="mt-7 grid grid-cols-1 items-center gap-x-8 gap-y-7 md:grid-cols-[1fr_5fr]">
             {post.stack.map((group) => (
-              <>
-                <dt class="text-muted text-sm font-semibold capitalize">
-                  {group.name}
-                </dt>
-                <dd class="flex flex-wrap gap-2">
-                  {group.items.map((item) => (
-                    <span class="bg-accent-soft border-line rounded-lg border px-3 py-2 font-mono text-sm">
-                      {item}
-                    </span>
-                  ))}
-                </dd>
-              </>
+              <Stack name={group.name} items={group.items} />
             ))}
           </dl>
         </Container>
@@ -124,18 +113,6 @@ const publishDate = new Date(post.date);
     }
   </article>
 
-  <footer class="border-line mt-15 border-t py-10">
-    <nav class="flex gap-6">
-      <a
-        href={`/${prev.slug}/`}
-        class="border-line bg-surface text-body flex-1 rounded-lg border p-6 text-left font-semibold"
-        ><span class="text-faint text-xs">← Previous</span><br />{prev.title}</a
-      >
-      <a
-        href={`/${next.slug}/`}
-        class="border-line bg-surface text-body flex-1 rounded-lg border p-6 text-right font-semibold"
-        ><span class="text-faint text-xs">Next →</span><br />{next.title}</a
-      >
-    </nav>
-  </footer>
+  {/* POSTS NAV */}
+  <PostsNav prev={prev} next={next} />
 </Layout>

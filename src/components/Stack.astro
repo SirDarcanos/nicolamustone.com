@@ -1,0 +1,21 @@
+---
+interface Props {
+  name: string;
+  items: string[];
+}
+
+const { name, items } = Astro.props;
+---
+
+<dt class="text-muted text-sm font-semibold capitalize">
+  {name}
+</dt>
+<dd class="flex flex-wrap gap-2">
+  {
+    items.map((item) => (
+      <span class="bg-accent-soft border-line rounded-lg border px-3 py-2 font-mono text-sm">
+        {item}
+      </span>
+    ))
+  }
+</dd>

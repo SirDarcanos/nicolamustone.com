@@ -1,0 +1,25 @@
+---
+import { type PostLink } from "../lib/wordpress";
+
+interface Props {
+  prev: PostLink;
+  next: PostLink;
+}
+
+const { prev, next } = Astro.props;
+---
+
+<footer class="border-line mt-15 border-t py-10">
+  <nav class="flex gap-6">
+    <a
+      href={`/${prev.slug}/`}
+      class="border-line bg-surface text-body flex-1 rounded-lg border p-6 text-left font-semibold"
+      ><span class="text-faint text-xs">← Previous</span><br />{prev.title}</a
+    >
+    <a
+      href={`/${next.slug}/`}
+      class="border-line bg-surface text-body flex-1 rounded-lg border p-6 text-right font-semibold"
+      ><span class="text-faint text-xs">Next →</span><br />{next.title}</a
+    >
+  </nav>
+</footer>
