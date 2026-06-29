@@ -1,5 +1,6 @@
 ---
 import Container from "../components/Container.astro";
+import Highlight from "../components/Highlight.astro";
 import Label from "../components/Label.astro";
 import Layout from "../layouts/Layout.astro";
 import { getAllPosts, type Entry } from "../lib/wordpress";
@@ -115,12 +116,7 @@ const publishDate = new Date(post.date);
           <h2 class="text-2xl">Notable bits</h2>
           <ul class="mt-5 space-y-2">
             {post.highlights.map((highlight) => (
-              <li class="flex items-center gap-4 capitalize">
-                <span class="text-accent text-xs" aria-hidden="true">
-                  →
-                </span>
-                {highlight}
-              </li>
+              <Highlight>{highlight}</Highlight>
             ))}
           </ul>
         </Container>
