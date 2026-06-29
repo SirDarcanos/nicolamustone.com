@@ -1,4 +1,5 @@
 ---
+import { twMerge } from "tailwind-merge";
 import type { HTMLAttributes } from "astro/types";
 
 interface Props extends HTMLAttributes<"div"> {
@@ -7,7 +8,8 @@ interface Props extends HTMLAttributes<"div"> {
 }
 
 const { section, className, ...rest } = Astro.props;
+const classes = twMerge("mt-20", className);
 const Tag = section ? "section" : "div";
 ---
 
-<Tag class:list={["mt-20", className]} {...rest}><slot /></Tag>
+<Tag class={classes} {...rest}><slot /></Tag>
