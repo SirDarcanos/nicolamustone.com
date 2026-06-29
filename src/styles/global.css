@@ -70,3 +70,15 @@
     @apply underline decoration-dotted underline-offset-4;
   }
 }
+
+.post-content img {
+  @apply rounded-xl;
+}
+
+.post-content p {
+  @apply mt-7;
+}
+
+.post-content figure:first-child {
+  @apply mb-10;
+}

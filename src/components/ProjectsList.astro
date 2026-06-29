@@ -35,12 +35,12 @@ const posts = await getAllPosts();
             <div>
               <h2>
                 <a href={"/" + post.slug} class="text-ink">
-                  {post.title}{" "}
+                  {post.title}
                   {post.categories.map((category) => (
                     <span class="bg-accent-soft text-accent ml-2 inline-block px-2 py-1 align-middle font-mono text-xs font-light uppercase">
                       {category}
                     </span>
-                  ))}{" "}
+                  ))}
                 </a>
               </h2>
               <p class="text-body">{post.excerpt}</p>
@@ -48,14 +48,14 @@ const posts = await getAllPosts();
             <div class="text-muted mt-2 flex shrink-0 gap-2 font-mono text-xs md:mt-0">
               {post.tags.map((tag) => (
                 <span class="capitalize">{tag}</span>
-              ))}{" "}
+              ))}
               &middot;
               <time datetime={post.date}>
                 {publishDate.toLocaleDateString("en-RO", {
                   year: "numeric",
                   month: "short",
                 })}
-              </time>{" "}
+              </time>
             </div>
           </div>
         </div>
