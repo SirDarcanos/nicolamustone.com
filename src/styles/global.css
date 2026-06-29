@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --font-base: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-base: var(--font-hanken-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-display:
+    var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 
   --color-background: #f6f6fa; /* page background */
   --color-surface: #fcfcff; /* cards & panels */
@@ -79,6 +80,14 @@
   @apply mt-7;
 }
 
-.post-content figure:first-child {
-  @apply mb-10;
+.post-content figure:first-of-type {
+  @apply my-10;
+}
+
+.post-content .wp-block-button {
+  @apply flex font-mono;
+}
+
+.post-content .wp-block-button a {
+  @apply bg-accent text-surface hover:bg-accent-dark rounded-3xl px-5 py-2 text-sm;
 }
