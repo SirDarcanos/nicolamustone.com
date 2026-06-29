@@ -9,11 +9,12 @@ import type { Entry } from "../lib/wordpress";
 interface Props {
   title: string;
   description?: string;
-  type?: "website" | "article";
+  type?: "website" | "article" | "profile";
   article?: Entry;
+  noindex?: boolean;
 }
 
-const { title, description, type, article } = Astro.props;
+const { title, description, type, article, noindex } = Astro.props;
 ---
 
 <!doctype html>
@@ -33,6 +34,7 @@ const { title, description, type, article } = Astro.props;
       description={description}
       type={type}
       article={article}
+      noindex={noindex}
     />
   </head>
   <body class="flex min-h-dvh flex-col">
