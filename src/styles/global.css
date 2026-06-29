@@ -84,10 +84,10 @@
   @apply my-10;
 }
 
-.post-content .wp-block-button {
-  @apply flex font-mono;
+.post-content .wp-block-button:first-of-type {
+  @apply border-line bg-surface mt-6 flex rounded-lg border px-4 py-2 font-mono text-sm;
 }
 
 .post-content .wp-block-button a {
-  @apply bg-accent text-surface hover:bg-accent-dark rounded-3xl px-5 py-2 text-sm;
+  @apply text-faint;
 }
