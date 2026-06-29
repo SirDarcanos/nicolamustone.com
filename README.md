@@ -73,8 +73,10 @@ Old WordPress URLs are 301'd via a Cloudflare [`_redirects`](https://developers.
 
 ## Deployment
 
-Built as a static site (`npm run build` → `dist/`) for Cloudflare Pages. The site uses a no-trailing-slash URL convention so sitemap URLs, canonicals, and redirect targets all match.
+Built as a static site (`npm run build` → `dist/`) for Cloudflare Pages. The site uses a trailing-slash URL convention (`trailingSlash: "always"`) so sitemap URLs, canonicals, and redirect targets all match.
 
 ## License
 
-Code is released under the [MIT License](LICENSE).
+The front-end is released under the [MIT License](LICENSE).
+
+The WordPress plugin under [`wordpress/`](wordpress/) is licensed **GPLv2-or-later** (as required for WordPress plugins) — see [`wordpress/LICENSE`](wordpress/LICENSE).

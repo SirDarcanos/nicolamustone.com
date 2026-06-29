@@ -1,3 +1,9 @@
+The MIT License below covers this project EXCEPT for the WordPress plugin
+under the `wordpress/` directory, which is licensed GPLv2-or-later (as required
+for WordPress plugins). See that plugin's own file header for its license.
+
+-------------------------------------------------------------------------------
+
 MIT License
 
 Copyright (c) 2026 Nicola Mustone
