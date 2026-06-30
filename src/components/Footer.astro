@@ -50,6 +50,13 @@ import Nav from "../components/Nav.astro";
         },
       ]}
     />
-    <Nav location="footer" />
+    <Nav
+      location="footer"
+      links={[
+        { href: "/", label: "Home" },
+        { href: "/about/", label: "About" },
+        { href: "/privacy/", label: "Privacy" },
+      ]}
+    />
   </div>
 </footer>
