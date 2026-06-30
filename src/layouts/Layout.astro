@@ -46,6 +46,18 @@ const { title, description, type, article, noindex } = Astro.props;
       article={article}
       noindex={noindex}
     />
+
+    {/* Fathom analytics — production only. */}
+    {
+      import.meta.env.PROD && import.meta.env.FATHOM_SITE_ID && (
+        <script
+          src="https://cdn.usefathom.com/script.js"
+          data-site={import.meta.env.FATHOM_SITE_ID}
+          defer
+          is:inline
+        />
+      )
+    }
   </head>
   <body class="flex min-h-dvh flex-col">
     <a
