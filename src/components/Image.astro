@@ -8,6 +8,7 @@ interface Props {
   className?: string;
   widths?: number[];
   priority?: boolean;
+  ariaHidden?: boolean;
 }
 
 const {
@@ -16,10 +17,11 @@ const {
   className,
   widths = [480, 768, 1024],
   priority,
+  ariaHidden,
 } = Astro.props;
 ---
 
-<figure>
+<figure aria-hidden={ariaHidden ? "true" : undefined}>
   <Picture
     src={src}
     formats={["avif", "webp", "jpeg"]}
