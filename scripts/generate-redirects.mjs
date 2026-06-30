@@ -18,8 +18,15 @@
 import { writeFile, mkdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 
-const API_BASE =
-  "https://public-api.wordpress.com/wp/v2/sites/nicolamustone.com";
+// This runs as a plain Node process (not Astro), so load .env into process.env.
+// In CI (Cloudflare) there's no .env — the var is set in the environment.
+try {
+  process.loadEnvFile();
+} catch {
+  // No .env file present; rely on the ambient environment.
+}
+
+const API_BASE = `https://public-api.wordpress.com/wp/v2/sites/${process.env.WP_SITE_ID}`;
 const OUT = fileURLToPath(new URL("../public/_redirects", import.meta.url));
 
 /**

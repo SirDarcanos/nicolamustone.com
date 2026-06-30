@@ -16,52 +16,75 @@ The API is read only at build time, so the live site has no runtime dependency o
 
 ## Tech stack
 
-- [Astro](https://astro.build) (static output)
-- [Tailwind CSS v4](https://tailwindcss.com) (via `@tailwindcss/vite`)
+- [Astro](https://astro.build) (static output) + TypeScript
+- [Tailwind CSS v4](https://tailwindcss.com) (via `@tailwindcss/vite`), with `tailwind-merge`
 - [`@astrojs/sitemap`](https://docs.astro.build/en/guides/integrations-guide/sitemap/)
-- TypeScript
+- [Astro Fonts API](https://docs.astro.build/en/guides/fonts/) — self-hosted Google Fonts with metric-matched fallbacks (no layout shift)
+- Class-based **dark mode** (dark by default), with AA-contrast palettes in both themes
+- Privacy-first analytics via [Fathom](https://usefathom.com) (cookieless; see [`/privacy`](src/pages/privacy.astro))
 
 ## Getting started
 
 ```bash
 npm install
-npm run dev      # start the dev server at http://localhost:4321
+cp .env.example .env   # sets WP_SITE_ID (the WordPress.com numeric site ID)
+npm run dev            # start the dev server at http://localhost:4321
 ```
+
+### Environment
+
+| Variable     | Purpose                                                                                                                                                                                                                                   |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `WP_SITE_ID` | WordPress.com numeric site ID used to fetch content at build time. Identifying the site by ID (not domain) keeps the build working. Set it in `.env` locally **and** in the Cloudflare Pages environment variables for production builds. |
 
 ### Scripts
 
-| Script                 | Description                                                          |
-| ---------------------- | -------------------------------------------------------------------- |
-| `npm run dev`          | Start the local dev server                                           |
-| `npm run build`        | Generate redirects (`prebuild`) and build the static site to `dist/` |
-| `npm run preview`      | Preview the production build locally                                 |
-| `npm run format`       | Format the codebase with Prettier                                    |
-| `npm run format:check` | Check formatting without writing                                     |
-| `npm run plugin:zip`   | Package the WordPress plugin (`wordpress/nmcom-project-fields/`) into an installable zip |
+| Script                 | Description                                                                    |
+| ---------------------- | ------------------------------------------------------------------------------ |
+| `npm run dev`          | Start the local dev server                                                     |
+| `npm run build`        | Generate redirects (`prebuild`) and build the static site to `dist/`           |
+| `npm run preview`      | Preview the production build locally                                           |
+| `npm run format`       | Format the codebase with Prettier                                              |
+| `npm run format:check` | Check formatting without writing                                               |
+| `npm run plugin:zip`   | Package every WordPress plugin under `wordpress/` into its own installable zip |
 
 ## Project structure
 
 ```
 src/
-  components/      UI components (Header, Footer, Nav, ProjectsList, SEO, …)
+  components/      UI components (Header, Footer, Nav, ProjectsList, ThemeSwitcher, SEO, …)
   data/            Local structured content (e.g. jobs.ts)
-  layouts/         Layout.astro — shared document shell (fonts, SEO, header/footer)
+  layouts/         Layout.astro — shared document shell (fonts, SEO, header/footer, theme init)
   lib/
     wordpress.ts   WordPress.com data layer — fetch + normalize posts at build time
   pages/
     index.astro    Home (hub)
-    [slug].astro   Single post at a flat /<slug> path
+    [slug].astro   Single post at a flat /<slug>/ path
+    about.astro · privacy.astro · 404.astro
   styles/
-    global.css     Tailwind import + design tokens (@theme)
+    global.css     Tailwind import + design tokens (@theme) + dark palette
+  env.d.ts         Types for env vars (WP_SITE_ID)
 scripts/
   generate-redirects.mjs   Builds public/_redirects (runs on prebuild)
+  zip-plugins.mjs          Packages each wordpress/ plugin (npm run plugin:zip)
+wordpress/         Companion WordPress plugins (GPLv2+, deployed separately)
+  nmcom-project-fields/    Stack taxonomy + Notable Bits (highlights) post meta
+  nmcom-deploy-hook/       Pings the Cloudflare deploy hook on publish → rebuild
 ```
 
 ## Content & data
 
 - **Posts** come from the WordPress.com REST API and are normalized in [`src/lib/wordpress.ts`](src/lib/wordpress.ts) into a clean `Entry` shape (decoded titles, derived SEO, root-domain canonicals). Templates never touch the raw API.
-- **SEO** is generated in [`src/components/SEO.astro`](src/components/SEO.astro) from each post's title/excerpt/featured image — the site has no SEO plugin.
+- **Per-project structure** that WordPress doesn't model natively is added via the companion plugin (see below): the **Stack** (a hierarchical `stack` taxonomy → grouped tech tags) and **Notable Bits** (a repeatable `highlights` post meta). Both are exposed over REST and read at build time.
+- **SEO** is generated in [`src/components/SEO.astro`](src/components/SEO.astro) per page type (`WebSite` / `ProfilePage` / `Article` + `Person`) from each post's title/excerpt/featured image — the site has no SEO plugin.
 - **Local data** (work history, etc.) lives under `src/data/`.
+
+## WordPress plugins
+
+Small companion plugins live under [`wordpress/`](wordpress/), version-controlled but deployed separately to WordPress.com (zip them with `npm run plugin:zip`). They're **GPLv2-or-later**, per WordPress requirements.
+
+- **`nmcom-project-fields`** — registers the `stack` taxonomy and the `highlights` post meta, both `show_in_rest`, so the headless front-end can read a project's tech stack and notable bits.
+- **`nmcom-deploy-hook`** — pings a Cloudflare Pages deploy hook whenever a post/page is published, updated, or unpublished, triggering a rebuild. The hook URL is set in **Settings → Deploy Hook** (stored in the DB, not the code).
 
 ## Redirects
 
@@ -74,10 +97,17 @@ Old WordPress URLs are 301'd via a Cloudflare [`_redirects`](https://developers.
 
 ## Deployment
 
-Built as a static site (`npm run build` → `dist/`) for Cloudflare Pages. The site uses a trailing-slash URL convention (`trailingSlash: "always"`) so sitemap URLs, canonicals, and redirect targets all match.
+Hosted on **Cloudflare Pages** as a static build.
+
+- **Build command:** `npm run build` — **Output directory:** `dist`
+- **Environment variable:** set `WP_SITE_ID` in the Pages settings (the same value as `.env`). `.env` is gitignored, so the production build needs it set there or it can't fetch content.
+- **Rebuild on publish:** the `nmcom-deploy-hook` plugin calls a Cloudflare **deploy hook** on publish/update/unpublish, so the static site refreshes after content changes. The site keeps serving the last good build regardless of WordPress or build state.
+- **URLs:** trailing-slash convention (`trailingSlash: "always"`) so sitemap URLs, canonicals, and redirect targets all match.
+
+Because the WordPress REST API is read **only at build time**, the live site has no runtime dependency on WordPress.
 
 ## License
 
 The front-end is released under the [MIT License](LICENSE).
 
-The WordPress plugin under [`wordpress/`](wordpress/) is licensed **GPLv2-or-later** (as required for WordPress plugins) — see [`wordpress/nmcom-project-fields/LICENSE`](wordpress/nmcom-project-fields/LICENSE).
+The WordPress plugins under [`wordpress/`](wordpress/) are licensed **GPLv2-or-later** (as required for WordPress plugins) — see [`wordpress/nmcom-project-fields/LICENSE`](wordpress/nmcom-project-fields/LICENSE).

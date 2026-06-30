@@ -14,8 +14,7 @@
  */
 
 const SITE_URL = "https://nicolamustone.com";
-const API_BASE =
-  "https://public-api.wordpress.com/wp/v2/sites/nicolamustone.com";
+const API_BASE = `https://public-api.wordpress.com/wp/v2/sites/${import.meta.env.WP_SITE_ID}`;
 
 export type PostLink = Pick<Entry, "title" | "slug">;
 
