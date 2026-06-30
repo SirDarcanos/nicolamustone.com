@@ -1,0 +1,9 @@
+/*
+Theme Name:  WordPress.com Headless Placeholder
+Theme URI:   https://nicolamustone.com
+Description: Minimal placeholder front-end for the headless WordPress.com backend. Every front-end request renders a "nothing to see here" page — the real site is the static Astro build at nicolamustone.com.
+Version:     1.0.0
+Author:      Nicola Mustone
+License:     GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+*/

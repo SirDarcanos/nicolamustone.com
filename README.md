@@ -47,7 +47,7 @@ npm run dev            # start the dev server at http://localhost:4321
 | `npm run preview`      | Preview the production build locally                                           |
 | `npm run format`       | Format the codebase with Prettier                                              |
 | `npm run format:check` | Check formatting without writing                                               |
-| `npm run plugin:zip`   | Package every WordPress plugin under `wordpress/` into its own installable zip |
+| `npm run wp:zip`       | Package every WordPress component under `wordpress/` (plugins + theme) into installable zips |
 
 ## Project structure
 
@@ -67,10 +67,11 @@ src/
   env.d.ts         Types for env vars (WP_SITE_ID)
 scripts/
   generate-redirects.mjs   Builds public/_redirects (runs on prebuild)
-  zip-plugins.mjs          Packages each wordpress/ plugin (npm run plugin:zip)
-wordpress/         Companion WordPress plugins (GPLv2+, deployed separately)
-  nmcom-project-fields/    Stack taxonomy + Notable Bits (highlights) post meta
-  nmcom-deploy-hook/       Pings the Cloudflare deploy hook on publish → rebuild
+  zip-wp.mjs               Packages each wordpress/ component (npm run wp:zip)
+wordpress/         Companion WordPress code (GPLv2+, deployed separately)
+  nmcom-project-fields/    Plugin: Stack taxonomy + Notable Bits (highlights) post meta
+  nmcom-deploy-hook/       Plugin: pings the Cloudflare deploy hook on publish → rebuild
+  nmcom-placeholder/       Theme: minimal "nothing to see here" front-end for the backend
 ```
 
 ## Content & data
@@ -80,12 +81,13 @@ wordpress/         Companion WordPress plugins (GPLv2+, deployed separately)
 - **SEO** is generated in [`src/components/SEO.astro`](src/components/SEO.astro) per page type (`WebSite` / `ProfilePage` / `Article` + `Person`) from each post's title/excerpt/featured image — the site has no SEO plugin.
 - **Local data** (work history, etc.) lives under `src/data/`.
 
-## WordPress plugins
+## WordPress plugins & theme
 
-Small companion plugins live under [`wordpress/`](wordpress/), version-controlled but deployed separately to WordPress.com (zip them with `npm run plugin:zip`). They're **GPLv2-or-later**, per WordPress requirements.
+Small companion components live under [`wordpress/`](wordpress/), version-controlled but deployed separately to WordPress.com (`npm run wp:zip` builds an installable zip per folder). All **GPLv2-or-later**, per WordPress requirements.
 
-- **`nmcom-project-fields`** — registers the `stack` taxonomy and the `highlights` post meta, both `show_in_rest`, so the headless front-end can read a project's tech stack and notable bits.
-- **`nmcom-deploy-hook`** — pings a Cloudflare Pages deploy hook whenever a post/page is published, updated, or unpublished, triggering a rebuild. The hook URL is set in **Settings → Deploy Hook** (stored in the DB, not the code).
+- **`nmcom-project-fields`** (plugin) — registers the `stack` taxonomy and the `highlights` post meta, both `show_in_rest`, so the headless front-end can read a project's tech stack and notable bits.
+- **`nmcom-deploy-hook`** (plugin) — pings a Cloudflare Pages deploy hook whenever a post/page is published, updated, or unpublished, triggering a rebuild. The hook URL is set in **Settings → Deploy Hook** (stored in the DB, not the code).
+- **`nmcom-placeholder`** (theme) — a minimal front-end so the headless backend isn't browsable: every route renders a "nothing to see here" page (`noindex`). Upload under **Appearance → Themes** and activate.
 
 ## Redirects
 

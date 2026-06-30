@@ -1,6 +1,7 @@
 /**
- * Packages every WordPress plugin under wordpress/ into its own installable zip
- * (one zip per folder, e.g. wordpress/nmcom-project-fields/ → nmcom-project-fields.zip).
+ * Packages every WordPress component under wordpress/ (plugins and themes) into
+ * its own installable zip — one per folder, e.g.
+ * wordpress/nmcom-project-fields/ → nmcom-project-fields.zip.
  *
  * Uses the system `zip` with -X (no macOS resource forks) and excludes .DS_Store,
  * so the archives are clean — unlike Finder's "Compress".
