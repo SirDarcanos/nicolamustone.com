@@ -29,7 +29,10 @@ const path = Astro.url.pathname;
       <a
         href={link.href}
         aria-current={path === link.href ? "page" : undefined}
-        class={location && location === "footer" ? "text-faint" : undefined}
+        class:list={[
+          "aria-[current=page]:font-semibold",
+          location === "footer" && "text-faint",
+        ]}
         target={link.blank ? "_blank" : undefined}
         rel={
           link.blank && link.nofollow

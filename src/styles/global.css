@@ -13,7 +13,7 @@
   --color-body: #36343f; /* long-form copy */
   --color-lead: #565463; /* lead paragraphs */
   --color-muted: #615f70; /* secondary text */
-  --color-faint: #918fa3; /* mono metadata */
+  --color-faint: #6e6b81; /* mono metadata */
   --color-line: rgba(30, 28, 45, 0.1); /* borders & dividers */
 
   --color-accent: #5a52d5; /* links, active state, emphasis */
@@ -33,7 +33,7 @@
   --color-body: #cbc9d6; /* long-form copy */
   --color-lead: #b6b4c4; /* lead paragraphs */
   --color-muted: #9a98a9; /* secondary text */
-  --color-faint: #817f93; /* mono metadata */
+  --color-faint: #908ea2; /* mono metadata */
   --color-line: rgba(255, 255, 255, 0.12); /* borders & dividers */
 
   --color-accent: #8f87f0; /* lightened for legibility on dark */
@@ -52,6 +52,12 @@
 
   ::selection {
     @apply bg-accent text-background;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 
   h1,
@@ -107,4 +113,15 @@
 
 .post-content .wp-block-button a {
   @apply text-faint;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
