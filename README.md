@@ -27,15 +27,16 @@ The API is read only at build time, so the live site has no runtime dependency o
 
 ```bash
 npm install
-cp .env.example .env   # sets WP_SITE_ID (the WordPress.com numeric site ID)
+cp .env.example .env   # sets WP_SITE_ID and FATHOM_SITE_ID
 npm run dev            # start the dev server at http://localhost:4321
 ```
 
 ### Environment
 
-| Variable     | Purpose                                                                                                                                                                                                                                   |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `WP_SITE_ID` | WordPress.com numeric site ID used to fetch content at build time. Identifying the site by ID (not domain) keeps the build working. Set it in `.env` locally **and** in the Cloudflare Pages environment variables for production builds. |
+| Variable         | Purpose                                                                                                                                                                                                                                   |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `WP_SITE_ID`     | WordPress.com numeric site ID used to fetch content at build time. Identifying the site by ID (not domain) keeps the build working. Set it in `.env` locally **and** in the Cloudflare Pages environment variables for production builds. |
+| `FATHOM_SITE_ID` | UseFathom.com site ID used for importing their analytics script. Set it in `.env` locally **and** in the Cloudflare Pages environment variables for production builds.                                                                    |
 
 ### Scripts
 
