@@ -26,6 +26,15 @@ const { title, description, type, article, noindex } = Astro.props;
     <link rel="icon" href={favicon.src} />
     <meta name="generator" content={Astro.generator} />
 
+    {/* Set theme before paint to avoid a flash. Dark is the default */}
+    <script is:inline>
+      {
+        if (localStorage.getItem("theme") !== "light") {
+          document.documentElement.classList.add("dark");
+        }
+      }
+    </script>
+
     <Font cssVariable="--font-space-grotesk" preload />
     <Font cssVariable="--font-hanken-grotesk" preload />
     <Font cssVariable="--font-jetbrains-mono" preload />

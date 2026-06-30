@@ -1,6 +1,7 @@
 ---
 import Image from "../components/Image.astro";
 import Nav from "../components/Nav.astro";
+import ThemeSwitcher from "../components/ThemeSwitcher.astro";
 
 import avatar from "../assets/nico.jpeg";
 ---
@@ -28,6 +29,9 @@ import avatar from "../assets/nico.jpeg";
         >
       </p>
     </div>
-    <Nav location="header" />
+    <div class="flex items-center gap-4">
+      <Nav location="header" />
+      <ThemeSwitcher />
+    </div>
   </div>
 </header>

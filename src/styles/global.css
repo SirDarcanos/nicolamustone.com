@@ -23,6 +23,23 @@
   --color-on-dark: #f6f6fa;
   --color-on-dark-muted: #adaac0;
 }
+@custom-variant dark (&:where(.dark, .dark *));
+
+.dark {
+  --color-background: #14131b; /* deep cool near-black */
+  --color-surface: #1d1b26; /* cards & panels */
+  --color-ink: #f3f2f8; /* primary text */
+  --color-headline: #ffffff; /* display headings */
+  --color-body: #cbc9d6; /* long-form copy */
+  --color-lead: #b6b4c4; /* lead paragraphs */
+  --color-muted: #9a98a9; /* secondary text */
+  --color-faint: #817f93; /* mono metadata */
+  --color-line: rgba(255, 255, 255, 0.12); /* borders & dividers */
+
+  --color-accent: #8f87f0; /* lightened for legibility on dark */
+  --color-accent-dark: #a9a2f5; /* hover → brighter in dark mode */
+  --color-accent-soft: rgba(143, 135, 240, 0.16); /* tag & chip fills */
+}
 
 @layer base {
   html {
@@ -34,7 +51,7 @@
   }
 
   ::selection {
-    @apply bg-accent-dark text-on-dark;
+    @apply bg-accent text-background;
   }
 
   h1,
