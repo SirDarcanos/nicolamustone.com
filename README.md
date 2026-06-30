@@ -1,8 +1,6 @@
 # nicolamustone.com
 
-Source code for the front-end of [nicolamustone.com](https://nicolamustone.com) — my portfolio/hub site.
-
-> **Status:** Work in progress.
+The source code for the front-end of [nicolamustone.com](https://nicolamustone.com) — my portfolio/hub site.
 
 ## Architecture
 
@@ -40,13 +38,13 @@ npm run dev            # start the dev server at http://localhost:4321
 
 ### Scripts
 
-| Script                 | Description                                                                    |
-| ---------------------- | ------------------------------------------------------------------------------ |
-| `npm run dev`          | Start the local dev server                                                     |
-| `npm run build`        | Generate redirects (`prebuild`) and build the static site to `dist/`           |
-| `npm run preview`      | Preview the production build locally                                           |
-| `npm run format`       | Format the codebase with Prettier                                              |
-| `npm run format:check` | Check formatting without writing                                               |
+| Script                 | Description                                                                                  |
+| ---------------------- | -------------------------------------------------------------------------------------------- |
+| `npm run dev`          | Start the local dev server                                                                   |
+| `npm run build`        | Generate redirects (`prebuild`) and build the static site to `dist/`                         |
+| `npm run preview`      | Preview the production build locally                                                         |
+| `npm run format`       | Format the codebase with Prettier                                                            |
+| `npm run format:check` | Check formatting without writing                                                             |
 | `npm run wp:zip`       | Package every WordPress component under `wordpress/` (plugins + theme) into installable zips |
 
 ## Project structure
