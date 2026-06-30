@@ -34,8 +34,6 @@ const OUT = fileURLToPath(new URL("../public/_redirects", import.meta.url));
  * [from path, to URL] — `to` may be a same-site path or an external URL.
  */
 const LEGACY_REDIRECTS = [
-  ["/about/", "/"],
-
   // Old WooCommerce tutorials → archive on the personal blog
   [
     "/2014/09/30/create-localized-bookable-products-wpml-woocommerce-bookings/",
