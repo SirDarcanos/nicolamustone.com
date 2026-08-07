@@ -6,7 +6,7 @@ import SkillBadge from "../components/SkillBadge.astro";
 import Stat from "../components/Stat.astro";
 import TimelineEntry from "../components/TimelineEntry.astro";
 
-import { jobs, stats, skills } from "../data/data";
+import { jobs, stats, skills, yearsInCareer } from "../data/data";
 
 const skillGroups = [
   { title: "Humans", label: "Leading & Coaching", items: skills.human },
@@ -15,7 +15,11 @@ const skillGroups = [
 ];
 ---
 
-<Layout title="About" type="profile">
+<Layout
+  title="About"
+  description={`${yearsInCareer}+ years of code, support, and leadership — from freelance web dev to Support Lead at Automattic. The skills, the timeline, and the full story.`}
+  type="profile"
+>
   {/* INTRO */}
   <Container
     section

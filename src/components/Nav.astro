@@ -21,6 +21,18 @@ const {
 } = Astro.props;
 
 const path = Astro.url.pathname;
+
+/* `rel` carries identity tokens like "me", which Mastodon and IndieAuth read to
+   verify a profile links back here. nofollow/noopener are layered on top. */
+function relFor(link: NavLink) {
+  const tokens = [
+    link.rel,
+    link.nofollow && "nofollow",
+    link.blank && "noopener noreferrer",
+  ].filter(Boolean);
+
+  return tokens.length ? tokens.join(" ") : undefined;
+}
 ---
 
 <nav class="flex gap-6 font-mono md:items-end">
@@ -34,11 +46,7 @@ const path = Astro.url.pathname;
           location === "footer" && "text-faint",
         ]}
         target={link.blank ? "_blank" : undefined}
-        rel={
-          link.blank && link.nofollow
-            ? "nofollow noopener noreferrer"
-            : undefined
-        }
+        rel={relFor(link)}
       >
         {link.label}
       </a>

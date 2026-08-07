@@ -10,12 +10,16 @@ import type { Entry } from "../lib/wordpress";
 interface Props {
   title: string;
   description?: string;
+  /* "/og.png" (with photo, the default) or "/og-plain.png" (type only). */
+  ogImage?: string;
+  ogImageAlt?: string;
   type?: "website" | "article" | "profile";
   article?: Entry;
   noindex?: boolean;
 }
 
-const { title, description, type, article, noindex } = Astro.props;
+const { title, description, ogImage, ogImageAlt, type, article, noindex } =
+  Astro.props;
 ---
 
 <!doctype html>
@@ -42,6 +46,8 @@ const { title, description, type, article, noindex } = Astro.props;
     <SEO
       title={title}
       description={description}
+      ogImage={ogImage}
+      ogImageAlt={ogImageAlt}
       type={type}
       article={article}
       noindex={noindex}
