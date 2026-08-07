@@ -48,9 +48,11 @@ const posts = await getAllPosts();
             </div>
             <div class="text-muted mt-2 flex shrink-0 gap-2 font-mono text-xs md:mt-0">
               {post.tags.map((tag) => (
-                <span class="capitalize">{tag}</span>
+                <>
+                  <span>{tag}</span>
+                  <span>&middot;</span>
+                </>
               ))}
-              &middot;
               <time datetime={post.date}>
                 {publishDate.toLocaleDateString("en-RO", {
                   year: "numeric",
