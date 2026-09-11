@@ -103,6 +103,14 @@
   @apply mt-7;
 }
 
+.post-content h2 {
+  @apply mt-12;
+}
+
+.post-content h3 {
+  @apply mt-10;
+}
+
 .post-content ul {
   @apply mt-7 list-disc space-y-2 pl-6;
 }
