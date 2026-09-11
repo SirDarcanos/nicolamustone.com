@@ -67,7 +67,7 @@ scripts/
   generate-redirects.mjs   Builds public/_redirects (runs on prebuild)
   zip-wp.mjs               Packages each wordpress/ component (npm run wp:zip)
 wordpress/         Companion WordPress code (GPLv2+, deployed separately)
-  nmcom-project-fields/    Plugin: Stack taxonomy + Notable Bits (highlights) post meta
+  nmcom-project-fields/    Plugin: Stack taxonomy
   nmcom-deploy-hook/       Plugin: pings the Cloudflare deploy hook on publish → rebuild
   nmcom-placeholder/       Theme: minimal "nothing to see here" front-end for the backend
 ```
@@ -75,7 +75,7 @@ wordpress/         Companion WordPress code (GPLv2+, deployed separately)
 ## Content & data
 
 - **Posts** come from the WordPress.com REST API and are normalized in [`src/lib/wordpress.ts`](src/lib/wordpress.ts) into a clean `Entry` shape (decoded titles, derived SEO, root-domain canonicals). Templates never touch the raw API.
-- **Per-project structure** that WordPress doesn't model natively is added via the companion plugin (see below): the **Stack** (a hierarchical `stack` taxonomy → grouped tech tags) and **Notable Bits** (a repeatable `highlights` post meta). Both are exposed over REST and read at build time.
+- **Per-project stack data** that WordPress doesn't model natively is added via the companion plugin: a hierarchical `stack` taxonomy for grouped technology tags. It is exposed over REST and read at build time.
 - **SEO** is generated in [`src/components/SEO.astro`](src/components/SEO.astro) per page type (`WebSite` / `ProfilePage` / `Article` + `Person`) from each post's title/excerpt/featured image — the site has no SEO plugin.
 - **Local data** (work history, etc.) lives under `src/data/`.
 
@@ -83,7 +83,7 @@ wordpress/         Companion WordPress code (GPLv2+, deployed separately)
 
 Small companion components live under [`wordpress/`](wordpress/), version-controlled but deployed separately to WordPress.com (`npm run wp:zip` builds an installable zip per folder). All **GPLv2-or-later**, per WordPress requirements.
 
-- **`nmcom-project-fields`** (plugin) — registers the `stack` taxonomy and the `highlights` post meta, both `show_in_rest`, so the headless front-end can read a project's tech stack and notable bits.
+- **`nmcom-project-fields`** (plugin) — registers the `stack` taxonomy with `show_in_rest`, so the headless front-end can read a project's technology stack.
 - **`nmcom-deploy-hook`** (plugin) — pings a Cloudflare Pages deploy hook whenever a post/page is published, updated, or unpublished, triggering a rebuild. The hook URL is set in **Settings → Deploy Hook** (stored in the DB, not the code).
 - **`nmcom-placeholder`** (theme) — a minimal front-end so the headless backend isn't browsable: every route renders a "nothing to see here" page (`noindex`). Upload under **Appearance → Themes** and activate.
 

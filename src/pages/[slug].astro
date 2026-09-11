@@ -1,6 +1,5 @@
 ---
 import Container from "../components/Container.astro";
-import Highlight from "../components/Highlight.astro";
 import Layout from "../layouts/Layout.astro";
 import PostsNav from "../components/PostsNav.astro";
 import Stack from "../components/Stack.astro";
@@ -93,20 +92,6 @@ const publishDate = new Date(post.date);
               <Stack name={group.name} items={group.items} />
             ))}
           </dl>
-        </Container>
-      )
-    }
-
-    {/* HIGHLIGHTS */}
-    {
-      post.highlights.length > 0 && (
-        <Container section id="highlights" className="mt-10">
-          <h2 class="text-2xl">Notable bits</h2>
-          <ul class="mt-5 space-y-2">
-            {post.highlights.map((highlight) => (
-              <Highlight>{highlight}</Highlight>
-            ))}
-          </ul>
         </Container>
       )
     }
