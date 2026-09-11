@@ -103,6 +103,18 @@
   @apply mt-7;
 }
 
+.post-content ul {
+  @apply mt-7 list-disc space-y-2 pl-6;
+}
+
+.post-content ol {
+  @apply mt-7 list-decimal space-y-2 pl-6;
+}
+
+.post-content li {
+  @apply text-body;
+}
+
 .post-content figure:first-of-type {
   @apply my-10;
 }

@@ -32,7 +32,6 @@ export type Entry = {
   tags: string[];
   categories: string[];
   stack: { name: string; items: string[] }[];
-  highlights: string[];
   seo: {
     title: string;
     description: string;
@@ -58,7 +57,6 @@ type WpPost = {
   excerpt: { rendered: string };
   content: { rendered: string };
   jetpack_featured_media_url?: string;
-  meta?: { highlights?: string[] };
   _embedded?: {
     "wp:featuredmedia"?: Array<{
       alt_text?: string;
@@ -196,7 +194,6 @@ function normalize(post: WpPost, stackTree: StackTree): Entry {
     tags: tags,
     categories: cats,
     stack: stack,
-    highlights: post.meta?.highlights ?? [],
     seo: {
       title: decodeEntities(post.title.rendered),
       description: truncate(toPlainText(post.excerpt.rendered)),
@@ -219,7 +216,7 @@ export async function getAllPosts(): Promise<Entry[]> {
   const stackTree = await getStackTree();
 
   while (true) {
-    const url = `${API_BASE}/posts?per_page=${perPage}&page=${page}&_fields=id,slug,date,modified,title,excerpt,content,featured_media,jetpack_featured_media_url,meta,_links,_embedded&_embed=wp:featuredmedia,wp:term`;
+    const url = `${API_BASE}/posts?per_page=${perPage}&page=${page}&_fields=id,slug,date,modified,title,excerpt,content,featured_media,jetpack_featured_media_url,_links,_embedded&_embed=wp:featuredmedia,wp:term`;
     const res = await fetch(url);
 
     if (res.status === 400) break; // WP returns 400 past the last page
