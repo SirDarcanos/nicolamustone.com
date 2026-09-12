@@ -1,14 +1,14 @@
 ---
 interface Props {
-  name: string;
+  title: string;
   items: string[];
 }
 
-const { name, items } = Astro.props;
+const { title, items } = Astro.props;
 ---
 
 <dt class="text-muted text-sm font-semibold capitalize">
-  {name}
+  {title}
 </dt>
 <dd class="flex flex-wrap gap-2">
   {

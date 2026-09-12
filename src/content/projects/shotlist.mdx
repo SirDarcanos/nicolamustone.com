@@ -1,0 +1,49 @@
+---
+title: shotlist
+description: Repeatable, annotated UI screenshots from declarative recipes. No code per shot.
+launchedAt: 2026-08-10
+order: 2
+featuredImage: ../../assets/projects/shotlist/featured.jpg
+featuredImageAlt: shotlist project icon.
+tags:
+  - npm
+status: active
+---
+
+import Image from "../../components/Image.astro";
+import ProjectLink from "../../components/ProjectLink.astro";
+import ProjectStack from "../../components/ProjectStack.astro";
+import Stack from "../../components/Stack.astro";
+import cover from "../../assets/projects/shotlist/content-1.jpg";
+
+<ProjectLink href="https://shotlist.dev">GET shotlist.dev/ – 200</ProjectLink>
+
+<Image src={cover} alt="The shotlist website and command-line interface." />
+
+Documentation screenshots start aging as soon as an interface changes. A button moves, a label gets rewritten, and the guide no longer matches the product. You can retake every image by hand or maintain a separate Playwright script for each one. I wanted a repeatable option that stayed close to the documentation, so I built **shotlist**.
+
+In shotlist, each screenshot begins with a YAML recipe. You describe how to reach the required state—click this, fill that, wait for the row to appear—then choose the region to capture and anything you want to annotate. Shotlist opens the running site, follows the recipe, captures the region, draws the callouts, and saves the image where the project expects it. Recipes cannot execute JavaScript. That constraint is deliberate: if shotlist cannot describe a screenshot, its vocabulary needs another action or query primitive. Because the recipe remains data, it can also be reviewed in a pull request alongside the documentation it supports. The feature I expect to use most is `--check`.
+
+It captures every screenshot again, compares the results with the committed images, and reports any drift. When needed, it also writes before, after, and difference images for inspection. Run it in CI and screenshot changes become visible before the documentation is published. Shotlist is also designed to handle recipes you did not write yourself. In every mode, a shot list can open only its own site and cannot read or write sensitive paths such as `.env`, `.git`, or `.ssh`.
+
+The optional `--untrusted` mode tightens those restrictions further. The package is [available on npm](https://www.npmjs.com/package/shotlist) under the MIT license. **shotlist.dev** uses shotlist to produce its own screenshots.
+
+## Notable bits
+
+- A screenshot is a YAML file—no per-shot code, and no step that evaluates JavaScript.
+- Drives the real site to the state you describe, clips the region, and draws the callouts on it.
+- Catches drift before readers do—a check run re-shoots against the committed images and diffs them.
+- Safe to run on a config you did not write: it opens its own site and never touches `.env`, `.git`, or `.ssh`.
+- Free and open source, MIT on npm—and shotlist.dev shoots its own screenshots with it.
+
+<ProjectStack>
+  <Stack
+    title="Frontend"
+    items={["Astro", "TypeScript", "Tailwind CSS", "Vite"]}
+  />
+  <Stack title="Hosting" items={["Cloudflare Pages"]} />
+  <Stack
+    title="Tools"
+    items={["GitHub", "GitHub Actions", "npm", "Prettier"]}
+  />
+</ProjectStack>

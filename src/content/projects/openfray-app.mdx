@@ -1,0 +1,47 @@
+---
+title: OpenFray.app
+description: A free, open-source combat console for D&D 5e Game Masters.
+launchedAt: 2026-06-30
+order: 4
+featuredImage: ../../assets/projects/openfray-app/featured.png
+featuredImageAlt: OpenFray project icon.
+tags:
+  - App
+  - Blog
+status: active
+---
+
+import Image from "../../components/Image.astro";
+import ProjectLink from "../../components/ProjectLink.astro";
+import ProjectStack from "../../components/ProjectStack.astro";
+import Stack from "../../components/Stack.astro";
+import cover from "../../assets/projects/openfray-app/content-1.png";
+
+<ProjectLink href="https://openfray.app">GET openfray.app/ – 200</ProjectLink>
+
+<Image src={cover} alt="The OpenFray combat console." />
+
+Running combat in D&D 5e asks a Game Master to track much more than initiative and hit points. Conditions connect creatures to one another, concentration can break after damage, and advantage or disadvantage may depend on an effect created several turns ago. **OpenFray** keeps that state visible in one fast, glanceable console, leaving the GM free to run the encounter.
+
+It also handles the routine bookkeeping that makes complex fights harder to manage: recharge abilities, legendary actions, legendary resistances, reactions, and concentration. Group saving throws apply resistances and immunities automatically, so resolving an area effect takes fewer calculations at the table.
+
+Dice rolls use cryptographically secure randomness and appear in a transparent, effect-aware log. Players and GMs can see what was rolled, which effects applied, and how the result was reached.
+
+OpenFray runs entirely in the browser, and you can use it without creating an account. Signing in with Discord or Google adds syncing for custom creatures, spells, and campaigns across devices. The project is free and open source, so you can also inspect the code, contribute to it, or fork it for your own table.
+
+## Notable bits
+
+- Tracks the in-between state other trackers drop—advantage, debuffs, concentration.
+- Full monster toolkit: recharge, legendary actions, legendary resistances, reactions.
+- Honest, cryptographically random dice with a transparent log.
+- No account needed to play; free and open source, AGPL-3.0.
+
+<ProjectStack>
+  <Stack
+    title="Frontend"
+    items={["Astro", "React", "TypeScript", "Tailwind CSS", "Vite"]}
+  />
+  <Stack title="Backend" items={["Supabase"]} />
+  <Stack title="Hosting" items={["Cloudflare Pages"]} />
+  <Stack title="Tools" items={["GitHub", "GitHub Actions", "npm"]} />
+</ProjectStack>

@@ -1,0 +1,44 @@
+---
+title: NicolaMustone.blog
+description: A decade of WordPress and WooCommerce notes, preserved as a reference.
+launchedAt: 2015-04-21
+order: 8
+featuredImage: ../../assets/projects/nicolamustone-blog/featured.png
+featuredImageAlt: Nicola Mustone.
+tags:
+  - Blog
+status: archived
+---
+
+import Image from "../../components/Image.astro";
+import ProjectLink from "../../components/ProjectLink.astro";
+import ProjectStack from "../../components/ProjectStack.astro";
+import Stack from "../../components/Stack.astro";
+import cover from "../../assets/projects/nicolamustone-blog/content-1.jpg";
+
+<ProjectLink href="https://nicolamustone.blog">
+  GET nicolamustone.blog/ – 200
+</ProjectLink>
+
+<Image src={cover} alt="NicolaMustone.blog" />
+
+**NicolaMustone.blog** was my original home on the internet. It holds more than a decade of notes about WordPress, WooCommerce, and the problems I encountered while working with them.
+
+Most posts began with a specific problem from a real project: adding a quantity field to the `[add_to_cart]` shortcode, displaying a unit price at checkout, or finding the right hook to change a WooCommerce template without editing core files. I documented the solution so I would not have to work it out twice—and so the next person could find it more quickly.
+
+Many of those articles still receive visitors from search engines. Someone looking for a way to remove the WooCommerce password-strength meter can land on an old post, copy the relevant snippet, and continue with their work. A tutorial that remains useful years later has earned its place in the archive.
+
+I no longer publish there, and the older snippets are not actively maintained. My work and writing have moved elsewhere, but removing the site would also remove references that people continue to use. The articles that warranted ongoing maintenance were moved and redirected to my current writing; everything else remains as originally published, occasional typo included.
+
+The blog is now an archive: a record of what I was learning and a collection of small solutions that can still help someone solve a problem.
+
+## Notable bits
+
+- 150+ WordPress and WooCommerce posts across 10+ years.
+- Still ranks for the tutorials that matter.
+
+<ProjectStack>
+  <Stack title="Frontend" items={["WordPress"]} />
+  <Stack title="Backend" items={["Jetpack", "WordPress.com"]} />
+  <Stack title="Hosting" items={["WordPress.com"]} />
+</ProjectStack>

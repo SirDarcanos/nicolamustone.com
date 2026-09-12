@@ -1,0 +1,52 @@
+---
+title: OpenDice & Rollful
+description: Roll dice in JavaScript or TypeScript with a formula parser and a single roll() function backed by a CSPRNG with modulo-bias rejection.
+launchedAt: 2026-08-06
+order: 3
+featuredImage: ../../assets/projects/opendice-rollful/featured.png
+featuredImageAlt: Rollful project icon.
+tags:
+  - API
+  - App
+  - npm
+status: active
+---
+
+import Image from "../../components/Image.astro";
+import ProjectLink from "../../components/ProjectLink.astro";
+import ProjectStack from "../../components/ProjectStack.astro";
+import Stack from "../../components/Stack.astro";
+import cover from "../../assets/projects/opendice-rollful/content-1.jpg";
+
+<ProjectLink href="https://rollful.dev">GET rollful.dev/ – 200</ProjectLink>
+
+<Image src={cover} alt="The Rollful dice rolling interface." />
+
+OpenDice began inside [OpenFray](/openfray-app/). I needed a dice engine that could parse the expressions used in tabletop games: rerolls, exploding dice, keep and drop modifiers, advantage, disadvantage, and nested formulas. It also had to produce predictable results for the game mechanics built around it.
+
+I initially developed the engine as part of the application, then extracted it into [an open-source npm package](https://www.npmjs.com/package/opendice). JavaScript and TypeScript projects can now use the same parser and call a single `roll()` function rather than implementing each rule independently.
+
+**Rollful** makes that engine available without installing a package. It provides a hosted API and a small web interface where you can enter a dice expression and inspect the result. The website also works as an interactive playground for the API because both use the same OpenDice implementation.
+
+The two projects offer different ways into the same engine. OpenDice runs directly inside an application; Rollful can be called over the web or used from a browser. Keeping the parsing and rolling logic in one place means both interfaces support the same expressions and return results in the same format.
+
+## Notable bits
+
+- From OpenFray to everywhere. A dice engine extracted from a real-world application into an open source library and hosted service.
+- Supports the full language of dice. Exploding dice, rerolls, keep/drop modifiers, custom functions, and more.
+- OpenDice at its core. Rollful is powered by the exact same engine, not a separate implementation.
+- Test in the browser, integrate anywhere. One interface for humans, one API for applications.
+- Lightweight by design. No accounts required, no unnecessary complexity, just reliable dice rolling.
+
+<ProjectStack>
+  <Stack
+    title="Frontend"
+    items={["Astro", "Astro Starlight", "TypeScript", "Tailwind CSS", "Vite"]}
+  />
+  <Stack title="Backend" items={["OpenAPI"]} />
+  <Stack title="Hosting" items={["Cloudflare Pages"]} />
+  <Stack
+    title="Tools"
+    items={["GitHub", "GitHub Actions", "npm", "Prettier"]}
+  />
+</ProjectStack>

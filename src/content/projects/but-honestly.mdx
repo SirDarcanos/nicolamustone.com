@@ -1,0 +1,53 @@
+---
+title: BUT. Honestly
+description: Essays on work, software, and the web, written slowly and with care.
+launchedAt: 2025-11-13
+order: 5
+featuredImage: ../../assets/projects/but-honestly/featured.png
+featuredImageAlt: BUT. Honestly.
+tags:
+  - Blog
+status: active
+---
+
+import Image from "../../components/Image.astro";
+import ProjectLink from "../../components/ProjectLink.astro";
+import ProjectStack from "../../components/ProjectStack.astro";
+import Stack from "../../components/Stack.astro";
+import cover from "../../assets/projects/but-honestly/content-1.jpg";
+
+<ProjectLink href="https://buthonestly.io">
+  GET buthonestly.io/ – 200
+</ProjectLink>
+
+<Image src={cover} alt="BUT. Honestly" />
+
+**BUT. Honestly** is where I work through ideas in public. I write long-form essays about the places where people and technology meet, with enough room to follow a question beyond the convenient answer.
+
+The tagline is “clarity without the comfort.” That means writing plainly, avoiding buzzwords and resisting the pressure to turn every difficult subject into an optimistic takeaway. The aim is to leave readers with a sharper view of the problem, even when its edges remain uncomfortable.
+
+The subjects follow what I am thinking about at the time. Some essays cover [leadership](https://buthonestly.io/leadership/) and the way teams work. Others focus on the craft of [programming](https://buthonestly.io/programming/), including practical questions such as choosing a software license. I also write about AI: where it helps, where its limits matter, and why it should not be treated as an oracle.
+
+Some pieces are more personal. I have written about blogging with ADHD and the systems that help me continue writing without burning out.
+
+There is no fixed publishing schedule. An essay goes out or is scheduled for the future when I consider it finished, and readers can follow new posts through a short newsletter rather than relying on an algorithm. I usually publish between one and four pieces a month.
+
+The site runs on Astro, with MDX files for the essays.
+
+## Notable bits
+
+- Clarity without the comfort—no buzzwords, no forced optimism.
+- Essays spanning leadership, AI, programming, personal observations, and blogging with ADHD.
+- Distraction-free by design—big type, and nothing between you and the words.
+
+<ProjectStack>
+  <Stack
+    title="Frontend"
+    items={["Astro", "React", "TypeScript", "Tailwind CSS", "Google Fonts"]}
+  />
+  <Stack title="Hosting" items={["Cloudflare Pages"]} />
+  <Stack
+    title="Tools"
+    items={["Claude Design", "GitHub", "GitHub Actions", "npm", "Prettier"]}
+  />
+</ProjectStack>

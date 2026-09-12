@@ -7,10 +7,10 @@ import Job from "../components/Job.astro";
 import ProjectsList from "../components/ProjectsList.astro";
 import pkg from "number-to-words";
 
-import { getAllPosts } from "../lib/wordpress";
+import { getProjects } from "../lib/projects";
 import { jobs, yearsInCareer } from "../data/data";
 
-const posts = await getAllPosts();
+const projects = await getProjects();
 
 const { toWords } = pkg;
 const yearsWord =
@@ -29,7 +29,7 @@ const yearsWord =
     className="text-center md:max-w-xl md:text-left"
   >
     <Label>
-      {posts.length} things & counting
+      {projects.length} things & counting
     </Label>
     <h1 class="mt-4">I lead, write, build, and actually ship things.</h1>
     <p class="mt-5 text-lg">
@@ -41,7 +41,7 @@ const yearsWord =
 
   {/* PROJECTS */}
   <Container id="projects">
-    <ProjectsList />
+    <ProjectsList {projects} />
   </Container>
 
   {/* EXPERIENCE */}
