@@ -14,6 +14,10 @@
   Cross-Origin-Opener-Policy: same-origin
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://cdn.usefathom.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cdn.usefathom.com; font-src 'self'; connect-src 'self' https://cdn.usefathom.com https://cloudflareinsights.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
 
+# Markdown alternatives are generated after Astro renders their HTML pages.
+/*.md
+  Content-Type: text/markdown; charset=utf-8
+
 # Content-hashed build assets never change under a given URL — cache forever.
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
