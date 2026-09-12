@@ -90,6 +90,12 @@ import Stack from "../../components/Stack.astro";
 
 Featured icon sources are normalized to 96×96 pixels for their 48px rendered size. Body image sources are capped at 1200px wide, and Astro generates responsive output formats during the build.
 
+## Agent-readable content
+
+`/llms.txt` lists portable Markdown alternatives for the homepage, About page, Privacy page, and every project. Each alternative uses the page URL with its trailing slash replaced by `.md`; the homepage is available at `/index.md`.
+
+Pages opt in through the `markdown` prop on `Layout`. After Astro renders the site, `scripts/build-markdown-alternatives.mjs` converts the marked HTML documents into Markdown, rewrites links between marked pages to their `.md` alternatives, and preserves canonical metadata. The `postbuild` script runs this automatically after every production build.
+
 ## Development workflow
 
 Create a short-lived branch for each change and open a pull request into `develop`. Direct pushes to `develop` and `main` are blocked. When a set of changes is ready for production, open a pull request from `develop` into `main`.

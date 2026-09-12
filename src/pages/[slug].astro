@@ -1,7 +1,8 @@
 ---
-import { render } from "astro:content";
+import { getEntries, render } from "astro:content";
 import Button from "../components/Button.astro";
 import Layout from "../layouts/Layout.astro";
+import RelatedProjects from "../components/RelatedProjects.astro";
 import { getProjects, type Project } from "../lib/projects";
 
 export async function getStaticPaths() {
@@ -18,14 +19,30 @@ interface Props {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
-const { title, description, launchedAt, tags, status } = project.data;
+const relatedProjects = await getEntries(
+  project.data.relatedProjects.map(({ project }) => project),
+);
+const relatedProjectCards = relatedProjects.map((relatedProject, index) => ({
+  project: relatedProject,
+  description: project.data.relatedProjects[index].description,
+}));
+const {
+  title,
+  description,
+  seoTitle,
+  seoDescription,
+  launchedAt,
+  tags,
+  status,
+} = project.data;
 ---
 
 <Layout
-  title={title}
-  description={description}
+  title={seoTitle}
+  description={seoDescription}
   type="article"
   article={project}
+  markdown
 >
   <article id={`project-${project.id}`} class="mt-20">
     <header class="text-center md:max-w-xl md:text-left">
@@ -62,6 +79,8 @@ const { title, description, launchedAt, tags, status } = project.data;
       <Content />
     </div>
   </article>
+
+  <RelatedProjects projects={relatedProjectCards} />
 
   <footer class="border-line mt-15 border-t py-10">
     <Button href="/#projects" ghost>← Back to all projects</Button>

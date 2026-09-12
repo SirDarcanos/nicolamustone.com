@@ -18,9 +18,10 @@ const yearsWord =
 ---
 
 <Layout
-  title="Nicola Mustone — Does things and ships them"
-  description="Support Team Lead at Automattic, building D&D tools, a JavaScript dice library, fan archives, and a proper carbonara recipe."
+  title="Nicola Mustone — Apps, Tools, Writing & Websites"
+  description="Explore apps, developer tools, essays, and independent websites made by Nicola Mustone, from D&D combat tools to software and food projects."
   type="website"
+  markdown
 >
   {/* INTRO */}
   <Container
@@ -34,13 +35,14 @@ const yearsWord =
     <h1 class="mt-4">I lead, write, build, and actually ship things.</h1>
     <p class="mt-5 text-lg">
       I'm Nico. I lead a support team at Automattic and make small, sharp,
-      occasionally silly things outside work. These are the projects I care
-      about right now.
+      occasionally silly things outside work: apps, developer tools, essays, and
+      independent websites. These are the projects I care about right now.
     </p>
   </Container>
 
   {/* PROJECTS */}
-  <Container id="projects">
+  <Container section id="projects">
+    <h2 class="mb-6">Apps, tools, writing & independent websites</h2>
     <ProjectsList {projects} />
   </Container>
 

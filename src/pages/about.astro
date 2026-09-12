@@ -1,4 +1,5 @@
 ---
+import Button from "../components/Button.astro";
 import Container from "../components/Container.astro";
 import Layout from "../layouts/Layout.astro";
 import Label from "../components/Label.astro";
@@ -16,9 +17,10 @@ const skillGroups = [
 ---
 
 <Layout
-  title="About"
-  description={`${yearsInCareer}+ years in web development, customer support, and team leadership, from freelance sites to leading a support team at Automattic.`}
+  title="About Nicola Mustone — Maker of Apps and Websites"
+  description="Meet Nicola Mustone, the person behind this collection of apps, developer tools, essays, and independent websites, with a background in support and web development."
   type="profile"
+  markdown
 >
   {/* INTRO */}
   <Container
@@ -37,6 +39,9 @@ const skillGroups = [
       Today I lead a support team at Automattic, working across WordPress.com
       and WooCommerce. Away from the support dashboard, I build small sites, run
       D&D adventures, and cook things I have strong opinions about.
+    </p>
+    <p>
+      <Button href="/#projects" ghost>Explore the projects I make</Button>
     </p>
   </Container>
 

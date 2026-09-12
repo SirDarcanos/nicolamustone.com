@@ -16,10 +16,39 @@ interface Props {
   type?: "website" | "article" | "profile";
   article?: Project;
   noindex?: boolean;
+  markdown?: boolean;
 }
 
-const { title, description, ogImage, ogImageAlt, type, article, noindex } =
-  Astro.props;
+const {
+  title,
+  description,
+  ogImage,
+  ogImageAlt,
+  type,
+  article,
+  noindex,
+  markdown = false,
+} = Astro.props;
+const markdownHref =
+  Astro.url.pathname === "/"
+    ? "/index.md"
+    : `${Astro.url.pathname.replace(/\/$/, "")}.md`;
+const agentAttributes = markdown
+  ? {
+      "data-agent-document": "",
+      "data-agent-metadata": JSON.stringify({
+        title: article?.data.title ?? title,
+        description: article?.data.description ?? description,
+        ...(article
+          ? {
+              launched: article.data.launchedAt.toISOString().slice(0, 10),
+              status: article.data.status,
+              tags: article.data.tags,
+            }
+          : {}),
+      }),
+    }
+  : {};
 ---
 
 <!doctype html>
@@ -29,6 +58,12 @@ const { title, description, ogImage, ogImageAlt, type, article, noindex } =
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" sizes="96x96" href={favicon.src} />
     <meta name="generator" content={Astro.generator} />
+    {
+      markdown && (
+        <link rel="alternate" type="text/markdown" href={markdownHref} />
+      )
+    }
+    <link rel="describedby" href="/llms.txt" />
 
     {/* Set theme before paint to avoid a flash. Dark is the default. */}
     <script is:inline>
@@ -82,6 +117,7 @@ const { title, description, ogImage, ogImageAlt, type, article, noindex } =
       id="main"
       tabindex="-1"
       class="mx-auto w-full max-w-4xl flex-1 px-6 focus:outline-none"
+      {...agentAttributes}
     >
       <slot />
     </main>
