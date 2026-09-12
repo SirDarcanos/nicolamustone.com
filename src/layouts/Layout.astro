@@ -37,8 +37,8 @@ const agentAttributes = markdown
   ? {
       "data-agent-document": "",
       "data-agent-metadata": JSON.stringify({
-        title,
-        description,
+        title: article?.data.title ?? title,
+        description: article?.data.description ?? description,
         ...(article
           ? {
               launched: article.data.launchedAt.toISOString().slice(0, 10),
