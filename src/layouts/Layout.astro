@@ -1,5 +1,5 @@
 ---
-import favicon from "../assets/nico.jpeg";
+import favicon from "../assets/favicon.png";
 import "../styles/global.css";
 import { Font } from "astro:assets";
 import SEO from "../components/SEO.astro";
@@ -27,7 +27,7 @@ const { title, description, ogImage, ogImageAlt, type, article, noindex } =
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href={favicon.src} />
+    <link rel="icon" type="image/png" sizes="96x96" href={favicon.src} />
     <meta name="generator" content={Astro.generator} />
 
     {/* Set theme before paint to avoid a flash. Dark is the default. */}
