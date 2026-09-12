@@ -23,6 +23,10 @@ Consult these guides before working on related tasks:
 
 ## Agent skills
 
+### Repository workflow
+
+Changes merge into `develop` through pull requests, then `develop` merges into `main` for production releases. See `docs/agents/repository-workflow.md`.
+
 ### Issue tracker
 
 Issues are tracked in this repository’s GitHub Issues. See `docs/agents/issue-tracker.md`.

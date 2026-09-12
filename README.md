@@ -90,12 +90,20 @@ import Stack from "../../components/Stack.astro";
 
 Featured icon sources are normalized to 96×96 pixels for their 48px rendered size. Body image sources are capped at 1200px wide, and Astro generates responsive output formats during the build.
 
+## Development workflow
+
+Create a short-lived branch for each change and open a pull request into `develop`. Direct pushes to `develop` and `main` are blocked. When a set of changes is ready for production, open a pull request from `develop` into `main`.
+
+Review changes locally with `npm run dev` or `npm run build`; non-`main` branches should not trigger Cloudflare preview builds.
+
 ## Redirects and deployment
 
 Historical date-based and legacy URLs are kept in `public/_redirects`. Project routes use trailing slashes consistently through `trailingSlash: "always"`.
 
 Cloudflare Pages settings:
 
+- Production branch: `main`
+- Preview branch builds: disabled
 - Build command: `npm run build`
 - Output directory: `dist`
 - Node.js: 22.12 or newer
