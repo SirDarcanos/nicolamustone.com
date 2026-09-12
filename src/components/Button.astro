@@ -15,6 +15,10 @@ const style = ghost
 
 <a
   href={href}
-  class:list={["rounded-3xl px-5 py-2 text-sm", style, className]}
+  class:list={[
+    "inline-flex items-center justify-center rounded-3xl px-5 py-2 text-sm whitespace-nowrap",
+    style,
+    className,
+  ]}
   {...rest}><slot /></a
 >

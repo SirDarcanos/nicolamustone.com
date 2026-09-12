@@ -34,25 +34,26 @@ const posts = await getAllPosts();
           )}
           <div class="min-w-0 flex-1 md:flex md:items-center md:justify-between md:gap-4">
             <div>
-              <h2>
-                <a href={`/${post.slug}/`} class="text-ink">
-                  {post.title}
-                  {post.categories.map((category) => (
-                    <span class="bg-accent-soft text-accent ml-2 inline-block px-2 py-1 align-middle font-mono text-xs font-light uppercase">
-                      {category}
-                    </span>
-                  ))}
-                </a>
-              </h2>
+              <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+                <h2>
+                  <a href={`/${post.slug}/`} class="text-ink">
+                    {post.title}
+                  </a>
+                </h2>
+                {post.categories.map((category) => (
+                  <span class="bg-accent-soft text-accent inline-block rounded-md px-2 py-1 font-mono text-xs font-light uppercase">
+                    {category}
+                  </span>
+                ))}
+                {post.tags.map((tag) => (
+                  <span class="bg-tag-soft text-tag inline-block rounded-md px-2 py-1 font-mono text-xs font-light">
+                    {tag}
+                  </span>
+                ))}
+              </div>
               <p class="text-body">{post.excerpt}</p>
             </div>
-            <div class="text-muted mt-2 flex shrink-0 gap-2 font-mono text-xs md:mt-0">
-              {post.tags.map((tag) => (
-                <>
-                  <span>{tag}</span>
-                  <span>&middot;</span>
-                </>
-              ))}
+            <div class="text-muted mt-2 shrink-0 font-mono text-xs md:mt-0">
               <time datetime={post.date}>
                 {publishDate.toLocaleDateString("en-RO", {
                   year: "numeric",

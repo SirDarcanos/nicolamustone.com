@@ -34,12 +34,15 @@ const connectLinks = [
 ---
 
 <footer class="text-faint mt-20 font-mono text-xs">
-  <div class="mx-auto max-w-5xl px-6 pb-5">
+  <div class="mx-auto max-w-4xl px-6 pb-5">
     <div
       class="border-line flex flex-col items-start gap-10 border-b pb-12 sm:flex-row sm:justify-between"
     >
-      <div class="grid grid-cols-2 gap-10 sm:gap-12">
-        <nav aria-labelledby="footer-explore-heading">
+      <div class="grid w-full grid-cols-2 gap-10 sm:w-auto sm:gap-12">
+        <nav
+          class="text-right sm:text-left"
+          aria-labelledby="footer-explore-heading"
+        >
           <h2
             id="footer-explore-heading"
             class="text-ink mb-4 font-mono text-sm font-semibold tracking-normal"
@@ -59,7 +62,7 @@ const connectLinks = [
           </ul>
         </nav>
 
-        <nav aria-labelledby="footer-connect-heading">
+        <nav class="text-left" aria-labelledby="footer-connect-heading">
           <h2
             id="footer-connect-heading"
             class="text-ink mb-4 font-mono text-sm font-semibold tracking-normal"
@@ -85,10 +88,12 @@ const connectLinks = [
         </nav>
       </div>
 
-      <ThemeSwitcher variant="picker" />
+      <div class="self-center sm:self-auto">
+        <ThemeSwitcher variant="picker" />
+      </div>
     </div>
 
-    <p class="pt-5">
+    <p class="pt-5 text-center sm:text-left">
       &copy; {new Date().getFullYear().toString()} Nicola Mustone. All rights reserved.
     </p>
   </div>
