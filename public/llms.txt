@@ -1,0 +1,25 @@
+# Nicola Mustone
+
+> Nicola Mustone is a support team lead, web developer, writer, and maker. This portfolio covers his experience and independent projects in software, tabletop gaming, publishing, and the web.
+
+The site is the canonical overview of Nicola's current work and career. Project pages describe what each project does, why it exists, and the technology behind it.
+
+## Main pages
+
+- [Home](https://nicolamustone.com/): Introduction, featured projects, and condensed work experience.
+- [About Nicola](https://nicolamustone.com/about/): Biography, skills, career statistics, and full work history.
+
+## Projects
+
+- [OpenFray.app](https://nicolamustone.com/openfray-app/): Free, open-source D&D 5e combat console for Game Masters.
+- [Agent Skills](https://nicolamustone.com/agent-skills/): Reusable coding-agent workflows for development, editorial work, and games.
+- [BUT. Honestly](https://nicolamustone.com/but-honestly/): Long-form essays about leadership, software, AI, and the web.
+- [shotlist](https://nicolamustone.com/shotlist/): Declarative, repeatable, annotated UI screenshots with drift detection.
+- [OpenDice and Rollful](https://nicolamustone.com/opendice-rollful/): JavaScript dice-expression engine, hosted API, and browser interface.
+- [MediEvil.org](https://nicolamustone.com/medievil-org/): Fan-made guide to the wider MediEvil community and its resources.
+- [Carbonara.Rocks](https://nicolamustone.com/carbonara-rocks/): Guide to authentic Italian carbonara and practical ingredient substitutions.
+- [NicolaMustone.blog](https://nicolamustone.com/nicolamustone-blog/): Archived WordPress and WooCommerce notes spanning more than a decade.
+
+## Optional
+
+- [Privacy](https://nicolamustone.com/privacy/): How the site handles analytics, visitor data, and external links.
