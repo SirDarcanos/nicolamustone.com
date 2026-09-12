@@ -238,7 +238,12 @@ test("the homepage and About page position the site around Nicola's projects", (
     homepage.querySelector("#intro")?.textContent ?? "",
     /independent websites/i,
   );
-  assert.ok(homepage.querySelector("#projects > h2"));
+  const projectCollection = homepage.querySelector("#projects");
+  assert.equal(projectCollection?.tagName, "DIV");
+  assert.equal(
+    projectCollection?.querySelector("h2")?.textContent.trim(),
+    undefined,
+  );
   for (const slug of Object.keys(projectPages)) {
     assert.ok(homepage.querySelector(`#projects a[href="/${slug}/"]`), slug);
   }
@@ -257,6 +262,7 @@ test("the homepage and About page position the site around Nicola's projects", (
   );
   assert.ok(projectCollectionLink);
   assert.match(projectCollectionLink.textContent, /projects/i);
+  assert.notEqual(projectCollectionLink.parentElement?.tagName, "P");
 });
 
 test("project pages separate search metadata from display copy", () => {
