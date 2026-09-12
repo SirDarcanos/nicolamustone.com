@@ -18,7 +18,9 @@
 
   --color-accent: #5a52d5; /* links, active state, emphasis */
   --color-accent-dark: #4a43bd; /* hover / pressed */
-  --color-accent-soft: rgba(90, 82, 213, 0.13); /* tag & chip fills */
+  --color-accent-soft: rgba(90, 82, 213, 0.13); /* category & chip fills */
+  --color-tag: #087f73; /* project tags */
+  --color-tag-soft: rgba(8, 127, 115, 0.12); /* project tag fills */
 
   --color-on-dark: #f6f6fa;
   --color-on-dark-muted: #adaac0;
@@ -38,7 +40,9 @@
 
   --color-accent: #8f87f0; /* lightened for legibility on dark */
   --color-accent-dark: #a9a2f5; /* hover → brighter in dark mode */
-  --color-accent-soft: rgba(143, 135, 240, 0.16); /* tag & chip fills */
+  --color-accent-soft: rgba(143, 135, 240, 0.16); /* category & chip fills */
+  --color-tag: #5eead4; /* project tags */
+  --color-tag-soft: rgba(94, 234, 212, 0.12); /* project tag fills */
 }
 
 @layer base {
