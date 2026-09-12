@@ -44,8 +44,11 @@ const resolvedOgImageAlt =
   ogImageAlt ?? article?.data.featuredImageAlt ?? DEFAULT_OG_IMAGE_ALT;
 const isGeneratedCard = GENERATED_CARDS.includes(resolvedOgImage);
 
+const PERSON_ID = `${SITE_URL}/#person`;
+const PERSON_REFERENCE = { "@id": PERSON_ID };
 const PERSON = {
   "@type": "Person",
+  "@id": PERSON_ID,
   name: SITE_NAME,
   url: SITE_URL,
   sameAs: [
@@ -68,7 +71,8 @@ if (type === "website") {
     "@type": "WebSite",
     name: SITE_NAME,
     url: SITE_URL,
-    description: DEFAULT_DESCRIPTION,
+    description,
+    creator: PERSON_REFERENCE,
   });
 }
 
@@ -78,7 +82,7 @@ if (type === "profile") {
     "@type": "ProfilePage",
     name: fullTitle,
     url: resolvedCanonical,
-    mainEntity: PERSON,
+    mainEntity: PERSON_REFERENCE,
   });
 }
 
@@ -91,7 +95,7 @@ if (article) {
     url: resolvedCanonical,
     dateCreated: article.data.launchedAt.toISOString(),
     image: resolvedOgImage,
-    creator: PERSON,
+    creator: PERSON_REFERENCE,
     mainEntityOfPage: resolvedCanonical,
   });
 }

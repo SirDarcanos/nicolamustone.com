@@ -28,11 +28,11 @@ const { projects } = Astro.props;
         <div class="min-w-0 flex-1 md:flex md:items-center md:justify-between md:gap-4">
           <div>
             <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
-              <h2>
+              <h3>
                 <a href={`/${id}/`} class="text-ink">
                   {data.title}
                 </a>
-              </h2>
+              </h3>
               {data.status === "archived" && (
                 <span class="bg-accent-soft text-accent inline-block rounded-md px-2 py-1 font-mono text-xs font-light uppercase">
                   Archived

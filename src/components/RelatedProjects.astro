@@ -1,0 +1,35 @@
+---
+import type { Project } from "../lib/projects";
+
+interface RelatedProject {
+  project: Project;
+  description: string;
+}
+
+interface Props {
+  projects: RelatedProject[];
+}
+
+const { projects } = Astro.props;
+---
+
+<section data-related-projects class="border-line mt-15 border-t pt-10">
+  <h2>Related projects</h2>
+  <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+    {
+      projects.map(({ project, description }) => (
+        <li>
+          <a
+            href={`/${project.id}/`}
+            class="border-line bg-surface block rounded-lg border p-4 no-underline"
+          >
+            <span class="text-ink font-display text-lg font-semibold">
+              {project.data.title}
+            </span>
+            <p class="text-muted mt-1 text-sm">{description}</p>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>
