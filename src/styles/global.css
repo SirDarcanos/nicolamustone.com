@@ -107,11 +107,11 @@
   @apply mt-7;
 }
 
-.post-content h2 {
+.post-content > h2 {
   @apply mt-12;
 }
 
-.post-content h3 {
+.post-content > h3 {
   @apply mt-10;
 }
 
@@ -129,14 +129,6 @@
 
 .post-content figure:first-of-type {
   @apply my-10;
-}
-
-.post-content .wp-block-button:first-of-type {
-  @apply border-line bg-surface mt-6 flex rounded-lg border px-4 py-2 font-mono text-sm;
-}
-
-.post-content .wp-block-button a {
-  @apply text-faint;
 }
 
 @media (prefers-reduced-motion: reduce) {

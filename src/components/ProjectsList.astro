@@ -1,69 +1,61 @@
 ---
-import { getAllPosts } from "../lib/wordpress";
+import { Picture } from "astro:assets";
+import type { Project } from "../lib/projects";
 
-const posts = await getAllPosts();
+interface Props {
+  projects: Project[];
+}
+
+const { projects } = Astro.props;
 ---
 
 {
-  posts.map((post) => {
-    let img: URL | null = null;
-    if (post.featuredImage) {
-      img = new URL(post.featuredImage);
-      img.searchParams.set("resize", "48,48");
-      img.searchParams.delete("fit");
-    }
-
-    const publishDate = new Date(post.date);
-
-    return (
-      <article
-        id={"post-" + post.id}
-        class="border-line border-t px-2 py-7 last:border-b"
-      >
-        <div class="flex items-start gap-4 sm:gap-6 md:items-center">
-          {img && (
-            <img
-              src={img.toString()}
-              alt={post.featuredImageAlt}
-              decoding="async"
-              width="48"
-              height="48"
-              class="shrink-0 rounded-lg"
-              aria-hidden="true"
-            />
-          )}
-          <div class="min-w-0 flex-1 md:flex md:items-center md:justify-between md:gap-4">
-            <div>
-              <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
-                <h2>
-                  <a href={`/${post.slug}/`} class="text-ink">
-                    {post.title}
-                  </a>
-                </h2>
-                {post.categories.map((category) => (
-                  <span class="bg-accent-soft text-accent inline-block rounded-md px-2 py-1 font-mono text-xs font-light uppercase">
-                    {category}
-                  </span>
-                ))}
-                {post.tags.map((tag) => (
-                  <span class="bg-tag-soft text-tag inline-block rounded-md px-2 py-1 font-mono text-xs font-light">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <p class="text-body">{post.excerpt}</p>
+  projects.map(({ id, data }) => (
+    <article
+      id={`project-${id}`}
+      class="border-line border-t px-2 py-7 last:border-b"
+    >
+      <div class="flex items-start gap-4 sm:gap-6 md:items-center">
+        <Picture
+          src={data.featuredImage}
+          formats={["avif", "webp", "png"]}
+          alt=""
+          widths={[48, 96]}
+          sizes="48px"
+          loading="lazy"
+          class="h-12 w-12 shrink-0 rounded-lg object-cover"
+        />
+        <div class="min-w-0 flex-1 md:flex md:items-center md:justify-between md:gap-4">
+          <div>
+            <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+              <h2>
+                <a href={`/${id}/`} class="text-ink">
+                  {data.title}
+                </a>
+              </h2>
+              {data.status === "archived" && (
+                <span class="bg-accent-soft text-accent inline-block rounded-md px-2 py-1 font-mono text-xs font-light uppercase">
+                  Archived
+                </span>
+              )}
+              {data.tags.map((tag) => (
+                <span class="bg-tag-soft text-tag inline-block rounded-md px-2 py-1 font-mono text-xs font-light">
+                  {tag}
+                </span>
+              ))}
             </div>
-            <div class="text-muted mt-2 shrink-0 font-mono text-xs md:mt-0">
-              <time datetime={post.date}>
-                {publishDate.toLocaleDateString("en-RO", {
-                  year: "numeric",
-                  month: "short",
-                })}
-              </time>
-            </div>
+            <p class="text-body">{data.description}</p>
+          </div>
+          <div class="text-muted mt-2 shrink-0 font-mono text-xs md:mt-0">
+            <time datetime={data.launchedAt.toISOString()}>
+              {data.launchedAt.toLocaleDateString("en-RO", {
+                year: "numeric",
+                month: "short",
+              })}
+            </time>
           </div>
         </div>
-      </article>
-    );
-  })
+      </div>
+    </article>
+  ))
 }

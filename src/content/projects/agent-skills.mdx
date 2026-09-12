@@ -1,0 +1,50 @@
+---
+title: Agent Skills
+description: Reusable skills for coding agents, built from workflows I use and shared for others to adapt.
+launchedAt: 2026-09-11
+order: 1
+featuredImage: ../../assets/projects/agent-skills/featured.jpg
+featuredImageAlt: Brain connected to electronic circuits, representing reusable skills for AI coding agents.
+tags:
+  - AI
+status: active
+---
+
+import Image from "../../components/Image.astro";
+import ProjectLink from "../../components/ProjectLink.astro";
+import cover from "../../assets/projects/agent-skills/content-1.jpg";
+
+<ProjectLink href="https://github.com/SirDarcanos/agentskills/">
+  GET SirDarcanos/agentskills – 200
+</ProjectLink>
+
+<Image
+  src={cover}
+  alt="AI chip connected to writing, coding, ideas, and image creation."
+/>
+
+I often give coding agents the same instructions across different projects: prepare the right Git branch before making changes, maintain a useful changelog, review prose without flattening its voice, or follow a repeatable process for a specialized task. **Agent Skills** is where I turn those instructions into reusable workflows.
+
+Each skill lives in its directory, with a `SKILL.md` file that tells an agent when to activate it, what steps to follow, and how to check its work. Longer explanations, examples, reference material, and scripts stay beside the skill. This keeps each one portable: it can be installed as part of the collection or copied into another setup and adjusted there.
+
+The repository includes general development skills for preparing implementation work, setting up GitHub repositories, and creating or maintaining changelogs. It also contains the two skills used to edit this article: Slop Guard, which looks for generic or unsupported prose without erasing the writer’s voice, and Stay Positive, which applies constructive framing without hiding criticism or forcing optimism.
+
+There is a Dungeons & Dragons section too. Those skills can create and rebalance monsters, format prose for use at the table, or rewrite an answer as a corpse affected by the _Speak with Dead_ spell. The mix reflects how I use coding agents myself: some tasks support software work, while others help with writing and games.
+
+The skills are starting points rather than universal instructions. Agent runtimes differ, and every project has its own tools and conventions, so paths, commands, and completion checks may need adjustment. Each skill includes a human-facing README to make that review easier before enabling it.
+
+The full collection can be installed with the `skills` CLI:
+
+`npx skills add SirDarcanos/agentskills --global`
+
+Individual skills can be selected when only one workflow is needed. The repository is [available on GitHub](https://github.com/SirDarcanos/agentskills), released under the MIT license, and open to focused improvements and new reusable skills.
+
+## Notable bits
+
+- One `SKILL.md` entry point per workflow, with clear triggers, instructions, and completion checks.
+- Covers development workflows, editorial review, and Dungeons & Dragons tools.
+- Install the complete collection or select individual skills with the `skills` CLI.
+- References, examples, and scripts stay beside the skills that use them.
+- Open source under the MIT license and designed to be adapted to different agents and projects.
+
+_AI brain icon by Studio Danro from [Noun Project](https://thenounproject.com/browse/icons/term/ai/) (CC BY 3.0)._
