@@ -1,71 +1,95 @@
 ---
-import Nav from "../components/Nav.astro";
+import ThemeSwitcher from "./ThemeSwitcher.astro";
+
+const exploreLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about/", label: "About" },
+  { href: "/privacy/", label: "Privacy" },
+];
+
+const connectLinks = [
+  { href: "https://github.com/SirDarcanos", label: "GitHub", rel: "me" },
+  {
+    href: "https://www.linkedin.com/in/nicolamustone/",
+    label: "LinkedIn",
+    rel: "me",
+  },
+  {
+    href: "https://bsky.app/profile/nicolamustone.bsky.social",
+    label: "Bluesky",
+    rel: "me",
+  },
+  {
+    href: "https://indieweb.social/@nicolamustone",
+    label: "Mastodon",
+    rel: "me",
+  },
+  { href: "https://x.com/nicolamustone", label: "X", rel: "me" },
+  {
+    href: "https://profiles.wordpress.org/nicolamustone/",
+    label: "WordPress",
+    rel: "me",
+  },
+];
 ---
 
-<footer class="border-line text-faint mt-20 border-t py-5 font-mono text-xs">
-  <div
-    class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-6 px-6 lg:flex-row"
-  >
-    <p>
-      &copy; {new Date().getFullYear().toString()} Nicola Mustone &middot; <a
-        href="https://github.com/SirDarcanos/nicolamustone.com"
-        target="_blank">MIT</a
-      >
+<footer class="text-faint mt-20 font-mono text-xs">
+  <div class="mx-auto max-w-5xl px-6 pb-5">
+    <div
+      class="border-line flex flex-col items-start gap-10 border-b pb-12 sm:flex-row sm:justify-between"
+    >
+      <div class="grid grid-cols-2 gap-10 sm:gap-12">
+        <nav aria-labelledby="footer-explore-heading">
+          <h2
+            id="footer-explore-heading"
+            class="text-ink mb-4 font-mono text-sm font-semibold tracking-normal"
+          >
+            Explore
+          </h2>
+          <ul class="space-y-2">
+            {
+              exploreLinks.map((link) => (
+                <li>
+                  <a href={link.href} class="text-faint inline-block py-0.5">
+                    {link.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+
+        <nav aria-labelledby="footer-connect-heading">
+          <h2
+            id="footer-connect-heading"
+            class="text-ink mb-4 font-mono text-sm font-semibold tracking-normal"
+          >
+            Connect
+          </h2>
+          <ul class="space-y-2">
+            {
+              connectLinks.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="text-faint inline-block py-0.5"
+                    target="_blank"
+                    rel={`${link.rel} nofollow noopener noreferrer`}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </div>
+
+      <ThemeSwitcher variant="picker" />
+    </div>
+
+    <p class="pt-5">
+      &copy; {new Date().getFullYear().toString()} Nicola Mustone. All rights reserved.
     </p>
-    <Nav
-      location="footer"
-      links={[
-        {
-          href: "https://github.com/SirDarcanos",
-          label: "GitHub",
-          blank: true,
-          nofollow: true,
-          rel: "me",
-        },
-        {
-          href: "https://www.linkedin.com/in/nicolamustone/",
-          label: "LinkedIn",
-          blank: true,
-          nofollow: true,
-          rel: "me",
-        },
-        {
-          href: "https://bsky.app/profile/nicolamustone.bsky.social",
-          label: "Bluesky",
-          blank: true,
-          nofollow: true,
-          rel: "me",
-        },
-        {
-          href: "https://indieweb.social/@nicolamustone",
-          label: "Mastodon",
-          blank: true,
-          nofollow: true,
-          rel: "me",
-        },
-        {
-          href: "https://x.com/nicolamustone",
-          label: "X",
-          blank: true,
-          nofollow: true,
-          rel: "me",
-        },
-        {
-          href: "https://profiles.wordpress.org/nicolamustone/",
-          label: "WordPress",
-          blank: true,
-          nofollow: true,
-          rel: "me",
-        },
-      ]}
-    />
-    <Nav
-      location="footer"
-      links={[
-        { href: "/", label: "Home" },
-        { href: "/about/", label: "About" },
-        { href: "/privacy/", label: "Privacy" },
-      ]}
-    />
   </div>
 </footer>

@@ -30,12 +30,17 @@ const { title, description, ogImage, ogImageAlt, type, article, noindex } =
     <link rel="icon" href={favicon.src} />
     <meta name="generator" content={Astro.generator} />
 
-    {/* Set theme before paint to avoid a flash. Dark is the default */}
+    {/* Set theme before paint to avoid a flash. Dark is the default. */}
     <script is:inline>
       {
-        if (localStorage.getItem("theme") !== "light") {
-          document.documentElement.classList.add("dark");
-        }
+        const theme = localStorage.getItem("theme");
+        const useDarkTheme =
+          theme === "dark" ||
+          theme === null ||
+          (theme === "system" &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+        document.documentElement.classList.toggle("dark", useDarkTheme);
       }
     </script>
 
