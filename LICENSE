@@ -1,8 +1,21 @@
-The MIT License below covers this project EXCEPT for the WordPress plugin
-under the `wordpress/` directory, which is licensed GPLv2-or-later (as required
-for WordPress plugins). See that plugin's own file header for its license.
+Copyright (c) 2026 Nicola Mustone. All rights reserved.
 
--------------------------------------------------------------------------------
+Website content
+---------------
+
+All original written content, articles, essays, images, and other non-code
+content in this project are copyrighted by Nicola Mustone. All rights are
+reserved, unless otherwise indicated. No permission is granted to reproduce,
+distribute, modify, or republish this content except as permitted by applicable
+law or with prior written permission from the copyright holder.
+
+Source code
+-----------
+
+Except for the WordPress plugins and theme under the `wordpress/` directory,
+the source code in this project is licensed under the MIT License below. The
+WordPress plugins and theme are licensed under GPLv2-or-later, as stated in
+their own file headers.
 
 MIT License
 
