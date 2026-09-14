@@ -61,20 +61,6 @@ const projectPages = {
     seoDescription:
       "OpenDice and Rollful give JavaScript and TypeScript developers one dice-expression engine as an npm package, hosted API, and browser playground.",
   },
-  "medievil-org": {
-    title: "MediEvil.org",
-    description: "A fan-made starting point for the MediEvil community.",
-    seoTitle: "MediEvil.org — Community Resource Directory",
-    seoDescription:
-      "MediEvil.org helps new and returning fans find the wider MediEvil community through one directory of wikis, forums, mods, guides, and Discords.",
-  },
-  "carbonara-rocks": {
-    title: "Carbonara.Rocks",
-    description: "The authentic Italian carbonara recipe—no cream.",
-    seoTitle: "Carbonara.Rocks — Authentic Carbonara Recipe",
-    seoDescription:
-      "Carbonara.Rocks gives home cooks an authentic Italian carbonara recipe, practical ingredient alternatives, and clear technique—with no cream.",
-  },
   "nicolamustone-blog": {
     title: "NicolaMustone.blog",
     description:
@@ -123,7 +109,7 @@ test("the production build publishes Markdown alternatives", () => {
     return [new URL(alternate, canonical).href];
   });
 
-  assert.equal(alternatives.length, 11);
+  assert.equal(alternatives.length, 9);
 
   const index = readFileSync(path.join(siteDirectory, "llms.txt"), "utf8");
   const advertised = [
