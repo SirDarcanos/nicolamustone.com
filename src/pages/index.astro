@@ -5,10 +5,11 @@ import Label from "../components/Label.astro";
 import Layout from "../layouts/Layout.astro";
 import Job from "../components/Job.astro";
 import ProjectsList from "../components/ProjectsList.astro";
+import SmallProjectsList from "../components/SmallProjectsList.astro";
 import pkg from "number-to-words";
 
 import { getProjects } from "../lib/projects";
-import { jobs, yearsInCareer } from "../data/data";
+import { jobs, smallProjects, yearsInCareer } from "../data/data";
 
 const projects = await getProjects();
 
@@ -30,7 +31,7 @@ const yearsWord =
     className="text-center md:max-w-xl md:text-left"
   >
     <Label>
-      {projects.length} things & counting
+      {projects.length + smallProjects.length} things & counting
     </Label>
     <h1 class="mt-4">I lead, write, build, and actually ship things.</h1>
     <p class="mt-5 text-lg">
@@ -43,6 +44,20 @@ const yearsWord =
   {/* PROJECTS */}
   <Container id="projects">
     <ProjectsList {projects} />
+  </Container>
+
+  {/* SMALL PROJECTS */}
+  <Container section id="small-projects">
+    <div class="mb-8 max-w-xl">
+      <Label>Side projects</Label>
+      <h2 class="mt-2">Smaller things, still shipped.</h2>
+      <p class="text-muted mt-3">
+        Not everything needs a case study. These are smaller tools, experiments,
+        and one-off sites I made to solve a problem, test an idea, or simply
+        because they ought to exist.
+      </p>
+    </div>
+    <SmallProjectsList projects={smallProjects} />
   </Container>
 
   {/* EXPERIENCE */}

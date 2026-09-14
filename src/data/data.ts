@@ -11,6 +11,12 @@ export interface Stat {
   description: string;
 }
 
+export interface SmallProject {
+  title: string;
+  description: string;
+  href: string;
+}
+
 export const yearsInCareer = new Date().getFullYear() - 2010;
 
 export const jobs = [
@@ -74,6 +80,44 @@ export const jobs = [
     role: "Web Dev",
     company: "Freelance",
     highlights: ["Built and maintained websites for local businesses."],
+  },
+];
+
+export const smallProjects: SmallProject[] = [
+  {
+    title: "Reddit CSV Scraper",
+    description:
+      "A resumable Python tool that exports public subreddit posts and comment trees to CSV.",
+    href: "https://github.com/SirDarcanos/reddit-csv-scraper",
+  },
+  {
+    title: "GSC Snapshot",
+    description:
+      "An npm package for creating reproducible, read-only Google Search Console snapshots.",
+    href: "https://www.npmjs.com/package/gsc-snapshot",
+  },
+  {
+    title: "Carbonara.Rocks",
+    description:
+      "One opinionated recipe for authentic Italian carbonara—no cream.",
+    href: "https://carbonara.rocks",
+  },
+  {
+    title: "MediEvil.org",
+    description: "A fan-made directory for the wider MediEvil community.",
+    href: "https://medievil.org",
+  },
+  {
+    title: "Free AI Voice Generator",
+    description:
+      "Private, in-browser text-to-speech with 28 voices and no account required.",
+    href: "https://buthonestly.io/resources/free-ai-voice-generator/",
+  },
+  {
+    title: "Steam Reviews Scraper",
+    description:
+      "A small Python utility that exports Steam product reviews to clean CSV files.",
+    href: "https://github.com/SirDarcanos/Steam-Reviews-Scraper",
   },
 ];
 

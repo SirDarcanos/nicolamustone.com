@@ -25,7 +25,7 @@ Consult these guides before working on related tasks:
 
 ### Repository workflow
 
-Changes merge into `develop` through pull requests, then `develop` merges into `main` for production releases. See `docs/agents/repository-workflow.md`.
+Push reviewed changes to `develop` directly or merge them through a pull request. Production releases require a pull request from `develop` into `main`. See `docs/agents/repository-workflow.md`.
 
 ### Issue tracker
 
