@@ -187,5 +187,7 @@ export const skills = {
     "Next.js",
     "Astro",
     "TailwindCSS",
+    "C#",
+    "Unity",
   ],
 };
