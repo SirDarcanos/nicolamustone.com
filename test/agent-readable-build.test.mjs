@@ -100,6 +100,8 @@ test("the footer credits Spacefast with a local wordmark", () => {
     assert.match(footer.textContent, /Hosted at/);
     const credit = footer.querySelector('a[href="https://spacefast.com/"]');
     assert.ok(credit, `${page} links to Spacefast`);
+    assert.equal(credit.getAttribute("target"), "_blank");
+    assert.equal(credit.getAttribute("rel"), "noopener noreferrer");
     const logo = credit.querySelector("img");
     assert.equal(logo?.getAttribute("src"), "/images/spacefast-wordmark.svg");
     assert.equal(logo?.getAttribute("alt"), "Spacefast");
