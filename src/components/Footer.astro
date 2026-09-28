@@ -93,8 +93,28 @@ const connectLinks = [
       </div>
     </div>
 
-    <p class="pt-5 text-center sm:text-left">
-      &copy; {new Date().getFullYear().toString()} Nicola Mustone. All rights reserved.
-    </p>
+    <div
+      class="flex flex-col items-center gap-3 pt-5 sm:flex-row sm:justify-between"
+    >
+      <p>
+        &copy; {new Date().getFullYear().toString()} Nicola Mustone. All rights reserved.
+      </p>
+      <span class="inline-flex items-center gap-1">
+        Hosted at{" "}
+        <a
+          href="https://spacefast.com/"
+          class="inline-flex hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-4"
+        >
+          <img
+            src="/images/spacefast-wordmark.svg"
+            alt="Spacefast"
+            width="114"
+            height="22"
+            class="h-auto w-[114px] dark:invert"
+            loading="lazy"
+          />
+        </a>
+      </span>
+    </div>
   </div>
 </footer>

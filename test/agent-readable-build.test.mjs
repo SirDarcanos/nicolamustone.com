@@ -92,6 +92,23 @@ test.before(() => {
   assert.equal(build.status, 0, build.stdout + build.stderr);
 });
 
+test("the footer credits Spacefast with a local wordmark", () => {
+  for (const page of ["index.html", "about/index.html", "privacy/index.html"]) {
+    const document = documentFor(page);
+    const footer = document.querySelector("footer");
+    assert.ok(footer, `${page} has a footer`);
+    assert.match(footer.textContent, /Hosted at/);
+    const credit = footer.querySelector('a[href="https://spacefast.com/"]');
+    assert.ok(credit, `${page} links to Spacefast`);
+    const logo = credit.querySelector("img");
+    assert.equal(logo?.getAttribute("src"), "/images/spacefast-wordmark.svg");
+    assert.equal(logo?.getAttribute("alt"), "Spacefast");
+  }
+  assert.ok(
+    existsSync(path.join(siteDirectory, "images/spacefast-wordmark.svg")),
+  );
+});
+
 test("the production build publishes Markdown alternatives", () => {
   const alternatives = htmlFiles(siteDirectory).flatMap((file) => {
     const document = createWindow(readFileSync(file, "utf8")).document;
