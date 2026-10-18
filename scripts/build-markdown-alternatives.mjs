@@ -44,8 +44,11 @@ const markdownUrl = (canonical) => {
   return url;
 };
 
+const rawMarkdownPath = (canonical) =>
+  `/markdown${markdownUrl(canonical).pathname.replace(/\.md$/, ".txt")}`;
+
 const outputPath = (canonical) =>
-  path.join(siteDirectory, markdownUrl(canonical).pathname.replace(/^\//, ""));
+  path.join(siteDirectory, rawMarkdownPath(canonical).replace(/^\//, ""));
 
 const absoluteUrl = (value, canonical) => {
   if (!value || value.startsWith("data:")) return value;
@@ -215,6 +218,20 @@ for (const document of documents) {
   mkdirSync(path.dirname(destination), { recursive: true });
   writeFileSync(destination, output);
 }
+
+const routes = documents.map(({ canonical }) => ({
+  source: markdownUrl(canonical).pathname,
+  destination: rawMarkdownPath(canonical),
+}));
+const publicDirectory = path.resolve("public");
+writeFileSync(
+  path.join(siteDirectory, "_redirects"),
+  `${readFileSync(path.join(publicDirectory, "_redirects"), "utf8").trimEnd()}\n\n# Raw Markdown alternatives.\n${routes.map(({ source, destination }) => `${source} ${destination} 200`).join("\n")}\n`,
+);
+writeFileSync(
+  path.join(siteDirectory, "_headers"),
+  `${readFileSync(path.join(publicDirectory, "_headers"), "utf8").trimEnd()}\n\n# Raw Markdown alternatives.\n${routes.map(({ source }) => `${source}\n  Content-Type: text/markdown; charset=utf-8`).join("\n\n")}\n\n/markdown/*\n  Content-Type: text/markdown; charset=utf-8\n`,
+);
 
 console.log(
   `Published ${documents.length} Markdown alternative${documents.length === 1 ? "" : "s"}.`,

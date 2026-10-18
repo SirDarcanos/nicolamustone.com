@@ -16,7 +16,11 @@ const htmlFiles = (directory) =>
   });
 
 const fileForUrl = (url) =>
-  path.join(siteDirectory, new URL(url).pathname.replace(/^\//, ""));
+  path.join(
+    siteDirectory,
+    "markdown",
+    new URL(url).pathname.replace(/^\//, "").replace(/\.md$/, ".txt"),
+  );
 
 const withoutFencedCode = (markdown) =>
   markdown.replace(/^(`{3,}|~{3,}).*?^\1\s*$/gms, "");
@@ -149,12 +153,18 @@ test("the production build publishes Markdown alternatives", () => {
     assert.doesNotMatch(markdown, /data-agent-|<script|<form|<nav|<button/i);
   }
 
-  const homepage = readFileSync(path.join(siteDirectory, "index.md"), "utf8");
+  const homepage = readFileSync(
+    fileForUrl("https://nicolamustone.com/index.md"),
+    "utf8",
+  );
   assert.match(homepage, /App, Blog/);
-  const about = readFileSync(path.join(siteDirectory, "about.md"), "utf8");
+  const about = readFileSync(
+    fileForUrl("https://nicolamustone.com/about.md"),
+    "utf8",
+  );
   assert.match(about, /Customer support, Technical troubleshooting/);
   const project = readFileSync(
-    path.join(siteDirectory, "agent-skills.md"),
+    fileForUrl("https://nicolamustone.com/agent-skills.md"),
     "utf8",
   );
   assert.doesNotMatch(project, /^## Agent Skills$/m);
@@ -170,8 +180,45 @@ test("the production build publishes Markdown alternatives", () => {
   const headers = readFileSync(path.join(siteDirectory, "_headers"), "utf8");
   assert.match(
     headers,
-    /\/\*\.md\s+Content-Type: text\/markdown; charset=utf-8/,
+    /\/index\.md\s+Content-Type: text\/markdown; charset=utf-8/,
   );
+});
+
+test("Markdown URLs rewrite to raw assets without Spacefast page compilation", () => {
+  const redirects = readFileSync(
+    path.join(siteDirectory, "_redirects"),
+    "utf8",
+  );
+  const headers = readFileSync(path.join(siteDirectory, "_headers"), "utf8");
+
+  for (const name of [
+    "index",
+    "about",
+    "privacy",
+    ...Object.keys(projectPages),
+  ]) {
+    assert.ok(
+      redirects
+        .split("\n")
+        .some(
+          (line) =>
+            line.trim().split(/\s+/).join(" ") ===
+            `/${name}.md /markdown/${name}.txt 200`,
+        ),
+      `${name}.md must serve a raw text asset`,
+    );
+    const raw = readFileSync(
+      path.join(siteDirectory, "markdown", `${name}.txt`),
+      "utf8",
+    );
+    assert.match(raw, /^---\ncanonical:/);
+    assert.ok(
+      headers.includes(
+        `/${name}.md\n  Content-Type: text/markdown; charset=utf-8`,
+      ),
+    );
+  }
+  assert.ok(!headers.includes("/*.md"), "Spacefast rejects suffix wildcards");
 });
 
 test("indexable pages publish complete, unique, self-referencing SEO metadata", () => {
