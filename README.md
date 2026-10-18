@@ -98,6 +98,8 @@ Featured icon sources are normalized to 96×96 pixels for their 48px rendered si
 
 Pages opt in through the `markdown` prop on `Layout`. After Astro renders the site, `scripts/build-markdown-alternatives.mjs` converts the marked HTML documents into Markdown, rewrites links between marked pages to their `.md` alternatives, and preserves canonical metadata. The `postbuild` script runs this automatically after every production build. `pnpm-workspace.yaml` enables pre/post scripts to preserve this step.
 
+Raw Markdown is stored in `dist/markdown/*.txt`. The generator adds exact rewrites from the advertised `.md` URLs and matching `text/markdown` headers to the built routing files. This keeps Spacefast from compiling the alternatives as website pages. Edit the base routing rules in `public/`; generated rules are rebuilt on each run.
+
 ## Development workflow
 
 Create a short-lived branch for each change and open a pull request into `develop`. Direct pushes to `develop` and `main` are blocked. When a set of changes is ready for production, open a pull request from `develop` into `main`.
