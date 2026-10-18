@@ -34,8 +34,8 @@ Push direct work to `develop`, or target `develop` from an optional working-bran
 Review changes locally with the Astro development server or a production build:
 
 ```bash
-npm run dev
-npm run build
+pnpm run dev
+pnpm run build
 ```
 
 Cloudflare Pages should use `main` as its production branch and have preview branch builds disabled. Pushes and pull requests involving `develop` or short-lived branches must not trigger Cloudflare builds. This keeps deployment builds limited to merges into `main`.
