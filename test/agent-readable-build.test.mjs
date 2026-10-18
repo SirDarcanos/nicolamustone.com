@@ -84,7 +84,7 @@ const jsonLdFor = (document) =>
   );
 
 test.before(() => {
-  const build = spawnSync("npm", ["run", "build"], {
+  const build = spawnSync("pnpm", ["run", "build"], {
     cwd: repositoryRoot,
     encoding: "utf8",
     maxBuffer: 10 * 1024 * 1024,
