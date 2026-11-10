@@ -110,7 +110,7 @@ export const smallProjects: SmallProject[] = [
   {
     title: "Free AI Voice Generator",
     description:
-      "Private, in-browser text-to-speech with 28 voices and no account required.",
+      "Private, in-browser text-to-speech with 65 voices and no account required.",
     href: "https://buthonestly.io/resources/free-ai-voice-generator/",
   },
   {
