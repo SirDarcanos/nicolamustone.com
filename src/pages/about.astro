@@ -6,8 +6,26 @@ import Label from "../components/Label.astro";
 import SkillBadge from "../components/SkillBadge.astro";
 import Stat from "../components/Stat.astro";
 import TimelineEntry from "../components/TimelineEntry.astro";
+import modernWarfareArtwork from "../assets/games/modern-warfare-4.webp";
+import helldiversArtwork from "../assets/games/helldivers-2.webp";
 
 import { jobs, stats, skills } from "../data/data";
+
+// Artwork from each game's official PlayStation page, stored locally.
+const currentlyPlaying = [
+  {
+    name: "Call of Duty: Modern Warfare 4",
+    platform: "PS5",
+    href: "https://www.playstation.com/en-ro/games/call-of-duty-modern-warfare-4/",
+    artwork: modernWarfareArtwork,
+  },
+  {
+    name: "Helldivers 2",
+    platform: "PS5",
+    href: "https://www.playstation.com/en-ro/games/helldivers-2/",
+    artwork: helldiversArtwork,
+  },
+];
 
 const skillGroups = [
   { title: "Humans", label: "Leading & Coaching", items: skills.human },
@@ -80,5 +98,44 @@ const skillGroups = [
     <div class="mt-10">
       {jobs.map((job) => <TimelineEntry {...job} />)}
     </div>
+  </Container>
+
+  {/* CURRENTLY PLAYING */}
+  <Container section id="currently-playing" aria-labelledby="playing-heading">
+    <h2 id="playing-heading">Currently playing</h2>
+    <ul class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+      {
+        currentlyPlaying.map((game) => (
+          <li>
+            <a
+              href={game.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group relative flex aspect-[4/3] flex-col justify-end overflow-hidden rounded-xl bg-black p-6 text-white hover:text-white focus-visible:outline-offset-4"
+            >
+              <img
+                src={game.artwork.src}
+                alt=""
+                width={game.artwork.width}
+                height={game.artwork.height}
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 h-full w-full object-cover object-right motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-105"
+              />
+              <span
+                aria-hidden="true"
+                class="absolute inset-0 bg-linear-to-t from-black via-black/60 to-black/10"
+              />
+              <span class="absolute top-4 right-4 rounded border border-white/30 bg-black/70 px-2 py-1 font-mono text-xs tracking-wide">
+                {game.platform}
+              </span>
+              <h3 class="relative max-w-[16rem] text-xl text-white md:text-2xl">
+                {game.name}
+              </h3>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </Container>
 </Layout>
